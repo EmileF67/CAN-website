@@ -1,0 +1,16 @@
+html {
+	background-color: #aec3d8; 
+	font-size: 16px;
+}
+
+header{
+	display: flex;
+    justify-content: center;
+    border-style: solid;
+    border-radius: 50px;
+    background-color: #0f365e;
+}
+
+img#Logo {
+    width: 20%;
+}
