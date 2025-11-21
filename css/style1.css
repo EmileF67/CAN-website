@@ -1,6 +1,11 @@
 html {
 	background-color: #aec3d8; 
 	font-size: 16px;
+    background-image: url(../img/fondsite2.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
 }
 
 header{
@@ -33,15 +38,40 @@ ul {
     gap: 5%;
 }
 
+
 li {
-    padding: 1%;
-	background-image: linear-gradient(to bottom, white, rgb(44, 158, 192));;
-	width: 30%;
-	border-radius: 20px;
+    display: flex;
+    flex-grow: 1; /*le contenu peut grandir proportionnellement à l’espace disponible*/
+    flex-shrink: 1; /*le contenu peut rétrécir si l’espace se réduit*/
+    flex-basis: 0; /*la taille de base, avant le partage de l’espace, est égale à zéro*/
     list-style: none;
-    text-align : center;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    padding: 0;              
+}
+
+a {             
+    width: 100%;                 
+    height: 100%;                
+    padding-top: 7%;
+    background: linear-gradient(to bottom, white, rgb(44, 158, 192));
+    border-radius: 20px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
+    text-decoration: none;
+    line-height: 100%;
+    color: rgb(68, 31, 138);
+    transition: transform 0.2s ease; /*Permet de faire une animation de transition quand on transforme des boutons */
+}
+
+a:hover {
+    transform: scale(1.1);
+}
+
+a.petit {
+    padding-top: 10%;
 }
 
 footer
@@ -58,10 +88,11 @@ footer
 
 article {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 	background-color:rgba(0, 0, 0, 0.4);
     width: 100%;
-    padding: 40%;
 	border-radius: 20px;
 	margin-bottom: 2%;
 	margin-top:2%;
@@ -69,7 +100,33 @@ article {
     /*Le quatrième paramètre (8px ici) gère l’étalement du flou autour de l’élément. Premier 0 = décalage horizontal, Deuxième 0 = décalage vertical. 0.5 dans rgba = canal alpha = niveau d'opacité*/
 }
 
-a {
-    text-decoration: none;
-    color: rgb(68, 31, 138)
+p.message {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(128, 200, 222);
+    margin-top: 0;
+    font-size: 2em;
+    background: linear-gradient(to bottom, white, rgb(44, 158, 192));
+    background-clip: text;
+}
+
+h1.gros-texte {
+    color: white;
+    font-size: 4em;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 0;
+    margin-bottom: 0.01;
+    padding-top: 3%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a.installer {
+    width: 15%;
+    height: 10%;
+    padding-top:1%;
+    padding-bottom: 1%;
+    border-style: groove;
+    color: white;
+    border-color: white;
+
 }
