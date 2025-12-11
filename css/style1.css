@@ -269,8 +269,31 @@ p.factTitre {
 
 p.fact {
     color: black;
+    margin-bottom: 0;
 }
 
+p.factgras {
+    color: black;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+table {
+    border-collapse: collapse; /*Les bordures peuvent se toucher */
+}
+
+th {
+    border: solid;
+}
+
+td {
+    border: solid;
+    text-align: center;
+}
+
+section.soustot {
+    justify-content: flex-end;
+}
 
 @media (min-width: 1920px) {
     nav {
