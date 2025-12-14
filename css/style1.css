@@ -200,7 +200,7 @@ article.facture {
 	border-radius: 20px;
 	margin-bottom: 0%;
 	margin-top:11%;
-    padding-bottom: 19%;
+    padding-bottom: 14%;
     box-shadow: 0 0 20px 8px rgba(0,0,0,0.5); /*Le troisième paramètre (20px ici) définit la puissance du flou. */
     /*Le quatrième paramètre (8px ici) gère l’étalement du flou autour de l’élément. Premier 0 = décalage horizontal, Deuxième 0 = décalage vertical. 0.5 dans rgba = canal alpha = niveau d'opacité*/
 }
@@ -294,6 +294,55 @@ td {
 section.soustot {
     justify-content: flex-end;
 }
+
+body.bodyfact {
+    background-color: #aec3d8;
+    background-image: url("../img/CANsymbolegauche.png"), url("../img/CANsymboledroite.png");
+    background-repeat: no-repeat, no-repeat;
+    background-position: left center, right center;
+    background-size: 120px, 120px;
+    
+}
+
+img#symbg {
+    width: 50%;
+    height: 10%;
+}
+
+/*Cartes d'embarquement*/
+
+section.carte {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 50px;
+    border-style: solid;
+    padding: 1%;
+    background-color: #5a61af;
+    width: 60%;
+}
+
+p.car {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+img#carte {
+    width: 60%;
+    border-radius: 50px;
+    border-style: solid;
+    background-color: white;
+    padding: 0;
+}
+
+section.datas {
+    flex-direction: column;
+    padding: 0%;
+}
+
+
+
+
 
 @media (min-width: 1920px) {
     nav {

@@ -34,6 +34,7 @@ var tarifcat3 = 0
 var tarifcat4 = 0
 var tarifcamp = 0
 var tarifvtot = 0
+var tariftotal = 0
 
 var tariftrotseul = 0
 var tarifveloseul = 0
@@ -90,6 +91,7 @@ const getUneReservation = async (nb) => {
         tarifcat4 = 0
         tarifcamp = 0
         tarifvtot = 0
+        tariftotal = 0
         
 
         tariftrotseul = 0
@@ -235,6 +237,8 @@ const getUneReservation = async (nb) => {
 					</tr>`
     }
 
+    tariftotal = tarifvtot + tarifptot
+
 
 
     let codeHTML = `<section class='page'>
@@ -291,6 +295,9 @@ const getUneReservation = async (nb) => {
                     </table>
                     <section class='soustot'>
                         <p class='fact'>Sous total véhicules : <span>&nbsp; ${arrondir(tarifvtot).toString().replace('.', ',')}€</span></p>
+                    </section>
+                    <section class='soustot'>
+                        <p class='fact'>Prix total : <span>&nbsp; ${arrondir(tariftotal).toString().replace('.', ',')}€</span></p>
                     </section>
                     </section>`
         
@@ -403,7 +410,7 @@ const getUnVehicule = async (port, nbr, nbv) => {
 
             const data = await response.json(); 
 
-            if (port === "Lorient")
+            if (port === "Lorient" || port === "Port-Tudy")
             {
                 if(data.code === "trot")
                 {
