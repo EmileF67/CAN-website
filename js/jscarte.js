@@ -16,7 +16,7 @@ const getUneReservation = async (nb) => {
     const ContainerReservations = document.getElementById('ContainerReservations');
 
     let codeHTML = `<section class="carte">
-                        <section class="datas">
+                        <section class="datas1">
                             <img id="carte" src="../img/CANcarte.png" alt="Logo">
                             <p>Gare de départ :</p>
                         </section>

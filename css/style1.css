@@ -334,15 +334,16 @@ img#carte {
     padding: 0;
 }
 
-section.datas {
+section.datas1 {
     flex-direction: column;
     padding: 0%;
+    width: 50%;
 }
 
 section.datas2 {
     flex-direction: column;
     padding: 0%;
-    margin-right: 10%;
+    width: 50%;
 }
 
 section.blanc {
