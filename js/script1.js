@@ -117,9 +117,8 @@ const getUneReservation = async (nb) => {
         fetch(`https://can.iutrs.unistra.fr/api/reservation/${nb}`)
     //Vérifier si la réponse est correcte
     if(!response.ok) {
-            throw new Error('Erreur de réseau !')
             alert("Aucune réservation trouvée. Veuillez entrer un autre numéro de réservation")
-            return
+            throw new Error('Erreur de réseau !')
     }
     //Sinon Retourner le résultat au format JSON
     const data = await response.json()
@@ -310,7 +309,6 @@ const getUneReservation = async (nb) => {
         //Récupérer la date du jour
 
     } catch (error){ // Gérer les erreurs
-        alert("Aucune réservation trouvée. Veuillez entrer un autre numéro de réservation")
         console.error('Une erreur est survenue :', error)
         return
     }

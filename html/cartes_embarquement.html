@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <title>Cartes d'embarquement</title>
     <link rel="stylesheet" href="../css/style1.css">
-    <script src="../js/script1.js"></script>
 
 </head>
 <body>
@@ -23,18 +22,12 @@
     <section>
         
         <article class="facture">
-            <section class="carte">
-                <section class="datas">
-                    <img id="carte" src="../img/CANcarte.png" alt="Logo">
-                    <p>blabla</p>
-                </section>
-                <section class="datas">
-                    <p class="car">Carte d'embarquement</p>
-                    <p>blabla</p>
-                </section>
-            
+            <h1 class="titrepage">Entrez un numéro de réservation</h1>
+            <p>Pour consulter vos cartes d'embarquement</p>
+            <input id="nom" name="nom" type="text" class="num" placeholder="Exemple : 2025705">
+            <input type="submit" value="Valider" class="valid" id="bout">
+            <section id="ContainerReservations">
             </section>
-            
         </article>
     </section>
 	
@@ -53,4 +46,5 @@
         <p class ="foot2">IUT Robert Schuman, Illkirch-Grafenstaden, 2026, Tous droits Réservés</p></p>
     </footer>
 </body>
+<script src="../js/jscarte.js"></script>
 </html>

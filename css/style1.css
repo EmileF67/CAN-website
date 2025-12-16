@@ -312,23 +312,22 @@ img#symbg {
 /*Cartes d'embarquement*/
 
 section.carte {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    margin-left: 19%;
+    margin-right: 19%;
     border-radius: 50px;
     border-style: solid;
     padding: 1%;
     background-color: #5a61af;
-    width: 60%;
 }
 
 p.car {
     font-weight: bold;
     font-size: 2rem;
+    text-align: center;
 }
 
 img#carte {
-    width: 60%;
+    max-width: 80%; 
     border-radius: 50px;
     border-style: solid;
     background-color: white;
@@ -338,6 +337,18 @@ img#carte {
 section.datas {
     flex-direction: column;
     padding: 0%;
+}
+
+section.datas2 {
+    flex-direction: column;
+    padding: 0%;
+    margin-right: 10%;
+}
+
+section.blanc {
+    background-color: white;
+    padding: 50%;
+    border-radius: 50px;
 }
 
 
