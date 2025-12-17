@@ -347,12 +347,44 @@ section.datas2 {
 }
 
 section.blanc {
+    flex-direction: column;
     background-color: white;
-    padding: 50%;
+    padding: 4%;
     border-radius: 50px;
 }
 
+p.cartg {
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 0;
+}
 
+p.cart {
+    font-size: 1.5rem;
+    padding: 0;
+}
+
+p.cart2 {
+    color: black;
+    margin-bottom: 0;
+    font-size: 1.5rem;
+}
+
+p.cart2g {
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+section.ligne {
+    justify-content: space-between;
+}
+
+img#qrcode {
+    width: 30%;
+}
 
 
 

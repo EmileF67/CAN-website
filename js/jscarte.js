@@ -18,18 +18,52 @@ const getUneReservation = async (nb) => {
     let codeHTML = `<section class="carte">
                         <section class="datas1">
                             <img id="carte" src="../img/CANcarte.png" alt="Logo">
-                            <p>Gare de départ :</p>
+                            <section>
+                                <p class='cart'>Gare de départ : </p> <p class='cartg'>&nbsp; ${data.portDepart}</p>
+                            </section>
+                            <section>
+                                <p class='cart'>Gare d'arrivée : </p> <p class='cartg'>&nbsp; ${data.portArrivee}</p>
+                            </section>
+                            <section>
+                                <p class='cart'>Date : </p> <p class='cartg'>&nbsp; ${data.date.split("-")[2]}/${data.date.split("-")[1]}/${data.date.split("-")[0]}</p>
+                            </section>
+                            <section>
+                                <p class='cart'>Heure départ : </p> <p class='cartg'>&nbsp; ${data.heure}</p>
+                            </section>
+                            <section>
+                                <p class='cart'>Bateau : </p> <p class='cartg'>&nbsp; ${data.bateau}</p>
+                            </section>
                         </section>
                         <section class="datas2">
                             <p class="car">Carte d'embarquement</p>
                             <section class="blanc">
+                                <section class='ligne'>
+                                    <p class='cart2'>Réservation </p> <p class='cart2g'>&nbsp; ${data.id}</p>
+                                </section>
+                                <section class='ligne'>
+                                    <p class='cart2'>Nom </p> <p class='cart2g'>&nbsp; ${data.nom}</p>
+                                </section>
+                                <section class='ligne'>
+                                    <p class='cart2'>Passager </p> <img id="qrcode" src="../img/qrcode.png" alt="qrcode">
+                                </section>
+                                <section class='ligne'>
+                                    <p class='cart2'>Nom </p> <p class='cart2g'>&nbsp; ${data.nom}</p>
+                                </section>
+                                <section class='ligne'>
+                                    <p class='cart2'>Prénom </p> <p class='cart2g'>&nbsp; ${data.nom}</p>
+                                </section>
+                                <section class='ligne'>
+                                    <p class='cart2'>Catégorie </p> <p class='cart2g'>&nbsp; ${data.nom}</p>
+                                </section>
+                                <section class='ligne'>
+                                    <p class='cart2'>Prix </p> <p class='cart2g'>&nbsp; ${data.nom}</p>
+                                </section>
                             </section>
                         </section>
                     </section>`
 
         ContainerReservations.innerHTML = codeHTML
 
-        const LaDate = new Date();
 
     } catch (error){ // Gérer les erreurs
         console.error('Une erreur est survenue :', error)
