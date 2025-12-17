@@ -386,6 +386,12 @@ img#qrcode {
     width: 30%;
 }
 
+.fleche {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
 
 
 @media (min-width: 1920px) {
