@@ -349,6 +349,7 @@ section.datas2 {
 }
 
 section.blanc {
+    min-height: 460px;
     flex-direction: column;
     background-color: white;
     padding: 4%;
