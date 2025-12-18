@@ -39,6 +39,7 @@ nav {
     margin-left: 16%;
     margin-right: 2%;
     position: fixed;
+    z-index: 10000; /*En étant pas en position: static (position de base), le nav peut être superposée par d'autre éléments. En mettant z-index à 10000 on s'assure qu'il soit toujours cliquable*/
 }
 
 ul {
@@ -386,12 +387,30 @@ img#qrcode {
     width: 30%;
 }
 
-.fleche {
+section#ContainerReservations {
+    position: relative; /*Devient un repère pour les enfants du container en position: absolute*/
+}
+
+
+button.fleche {
+  position: absolute; /*Les flèches sont par rapport au parent en position: relative, ici ContainerReservations*/
+  top: 50%;
+  z-index: 1000; /*En étant pas en position: static (position de base), la fleche peut être superposée par d'autre éléments. En mettant z-index à 1000 on s'assure qu'elle soit quand même cliquable (seul le nav à un plus gros z-index)*/
   background: none;
   border: none;
-  font-size: 2rem;
+  font-size: 2.5rem;
   cursor: pointer;
 }
+
+/*Placement par rapport au repère*/
+button#avant {
+  left: 5%;
+}
+
+button#apres {
+  right: 5%;
+}
+
 
 
 @media (min-width: 1920px) {

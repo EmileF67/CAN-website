@@ -4,6 +4,8 @@ var index = 0
 
 const getUneReservation = async (nb) => {
     try{
+        passagers = []
+        index = 0
 
         document.getElementById('ContainerReservations').textContent = ""
 
@@ -19,7 +21,9 @@ const getUneReservation = async (nb) => {
     //Traiter les données récupérées
     const ContainerReservations = document.getElementById('ContainerReservations');
 
-    let codeHTML = `<section class="carte">
+    let codeHTML = `<button id="avant" class="fleche">❮--</button>
+                    <button id="apres" class="fleche">--❯</button>
+                    <section class="carte">
                         <section class="datas1">
                             <img id="carte" src="../img/CANcarte.png" alt="Logo">
                             <section>
@@ -58,6 +62,22 @@ const getUneReservation = async (nb) => {
 
         ContainerReservations.innerHTML = codeHTML
 
+        let avant = document.getElementById("avant")
+        avant.addEventListener("click", function() {
+        if (index > 0) {
+            index -= 1
+            afficherPassager(index);
+        }
+        });
+
+        let apres = document.getElementById("apres")
+        apres.addEventListener("click", function() {
+        if (index < passagers.length - 1) {
+            index += 1
+            afficherPassager(index)
+        }
+        });
+
         for(let i = 0; i < data.nbPassagers; i ++)
 		{
 			await getUnPassager(nb, i+1);
@@ -94,21 +114,21 @@ const getUnPassager = async (nbr, nbp) => {
 
 //On affiche le passager
 function afficherPassager(index) {
-    const p = passagers[index];
+    const p = passagers[index]
 
-    const ContainerPassager = document.getElementById('ContainerPassager');
+    const ContainerPassager = document.getElementById('ContainerPassager')
 
     let codeHTML = `<section class='ligne'>
-                            <p class='cart2'>Nom </p> <p class='cart2g'>&nbsp; ${data.nom}</p>
+                            <p class='cart2'>Nom </p> <p class='cart2g'>&nbsp; ${p.nom}</p>
                         </section>
                         <section class='ligne'>
-                            <p class='cart2'>Prénom </p> <p class='cart2g'>&nbsp; ${data.prenom}</p>
+                            <p class='cart2'>Prénom </p> <p class='cart2g'>&nbsp; ${p.prenom}</p>
                         </section>
                         <section class='ligne'>
-                            <p class='cart2'>Catégorie </p> <p class='cart2g'>&nbsp; ${data.libelleCategorie}</p>
+                            <p class='cart2'>Catégorie </p> <p class='cart2g'>&nbsp; ${p.libelleCategorie}</p>
                         </section>
                         <section class='ligne'>
-                            <p class='cart2'>Prix </p> <p class='cart2g'>&nbsp; ${data.price}</p>
+                            <p class='cart2'>Prix </p> <p class='cart2g'>&nbsp; ${p.price}</p>
                         </section>`
 
     ContainerPassager.innerHTML = codeHTML
@@ -125,16 +145,3 @@ valider.addEventListener("click", function() {
     getUneReservation(valeur)
 });
 
-document.getElementById("avant").addEventListener("click", () => {
-  if (index > 0) {
-    index -= 1;
-    afficherPassager(index);
-  }
-});
-
-document.getElementById("apres").addEventListener("click", () => {
-  if (index < passagers.length - 1) {
-    index += 1;
-    afficherPassager(index);
-  }
-});
