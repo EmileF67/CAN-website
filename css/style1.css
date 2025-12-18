@@ -26,6 +26,7 @@ img#Logo {
     border-radius: 50px;
     background-color: rgba(0, 0, 0, 0.4);
     position:fixed ;
+    z-index: 10000;
 }
 
 section {

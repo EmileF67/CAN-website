@@ -1,4 +1,5 @@
 var passagers = []
+var vehicules = []
 var index = 0
 
 
@@ -6,6 +7,7 @@ const getUneReservation = async (nb) => {
     try{
         passagers = []
         index = 0
+        vehicules = []
 
         document.getElementById('ContainerReservations').textContent = ""
 
@@ -51,9 +53,6 @@ const getUneReservation = async (nb) => {
                                 <section class='ligne'>
                                     <p class='cart2'>Nom </p> <p class='cart2g'>&nbsp; ${data.nom}</p>
                                 </section>
-                                <section class='ligne'>
-                                    <p class='cart2'>Passager </p> <img id="qrcode" src="../img/qrcode.png" alt="qrcode">
-                                </section>
                                     <div id='ContainerPassager'>
                                     </div>
                             </section>
@@ -64,18 +63,20 @@ const getUneReservation = async (nb) => {
 
         let avant = document.getElementById("avant")
         avant.addEventListener("click", function() {
-        if (index > 0) {
-            index -= 1
-            afficherPassager(index);
-        }
-        });
+            if (index > 0) 
+            {
+                index -=1
+                afficher()
+            }
+        })
 
         let apres = document.getElementById("apres")
         apres.addEventListener("click", function() {
-        if (index < passagers.length - 1) {
-            index += 1
-            afficherPassager(index)
-        }
+            if (index < passagers.length + vehicules.length - 1)
+            {
+                index +=1
+                afficher()
+            }
         });
 
         for(let i = 0; i < data.nbPassagers; i ++)
@@ -83,7 +84,12 @@ const getUneReservation = async (nb) => {
 			await getUnPassager(nb, i+1);
 		}
 
-        afficherPassager(0)
+        for(let i = 0; i < data.nbVehicules; i ++)
+		{
+			await getUnVehicule(nb, i+1);
+		}
+
+        afficher()
 
     } catch (error){ // Gérer les erreurs
         console.error('Une erreur est survenue :', error)
@@ -112,29 +118,86 @@ const getUnPassager = async (nbr, nbp) => {
     }
 };
 
+//On remplit la liste véhicules
+const getUnVehicule = async (nbr, nbp) => {
+        try {
+            const response = await fetch(
+                `https://can.iutrs.unistra.fr/api/reservation/${nbr}/vehicule/${nbp}`
+            );
+
+            if (!response.ok) {
+                throw new Error("Erreur réseau !");
+            }
+
+            const data = await response.json();
+
+            //On ajoute le passager dans le tableau passagers
+            vehicules.push(data)
+
+        } catch (error) {
+            console.error("Une erreur est survenue :", error);
+    }
+};
+
+//On gère si on doit afficher un passager ou un véhicule
+function afficher() {
+    const totpassagers = passagers.length;
+
+    if (index < totpassagers) {
+        afficherPassager(index)
+    } else {
+        afficherVehicule(index - totpassagers)
+    }
+
+    document.getElementById("avant").disabled = index === 0 //Quand index = 0, fleche avant desactivée
+    document.getElementById("apres").disabled = index === totpassagers + vehicules.length - 1 //Quand index = totpassagers + vehicules.length - 1, fleche apres desactivée
+}
+
 //On affiche le passager
-function afficherPassager(index) {
-    const p = passagers[index]
+function afficherPassager(indexp) {
+    const p = passagers[indexp]
 
     const ContainerPassager = document.getElementById('ContainerPassager')
 
     let codeHTML = `<section class='ligne'>
-                            <p class='cart2'>Nom </p> <p class='cart2g'>&nbsp; ${p.nom}</p>
+                        <p class='cart2'>Passager </p> <img id="qrcode" src="../img/qrcode.png" alt="qrcode">
+                    </section>
+                    <section class='ligne'>
+                        <p class='cart2'>Nom </p> <p class='cart2g'>&nbsp; ${p.nom}</p>
+                    </section>
+                    <section class='ligne'>
+                        <p class='cart2'>Prénom </p> <p class='cart2g'>&nbsp; ${p.prenom}</p>
+                    </section>
+                    <section class='ligne'>
+                        <p class='cart2'>Catégorie </p> <p class='cart2g'>&nbsp; ${p.libelleCategorie}</p>
+                    </section>
+                    <section class='ligne'>
+                        <p class='cart2'>Prix </p> <p class='cart2g'>&nbsp; ${p.price}</p>
+                    </section>`
+
+    ContainerPassager.innerHTML = codeHTML
+}
+
+//On affiche le vehicule
+function afficherVehicule(indexv) {
+    const v = vehicules[indexv]
+
+    const ContainerPassager = document.getElementById('ContainerPassager')
+
+    let codeHTML = `    <section class='ligne'>
+                            <p class='cart2'>Véhicule </p> <img id="qrcode" src="../img/qrcode.png" alt="qrcode">
                         </section>
                         <section class='ligne'>
-                            <p class='cart2'>Prénom </p> <p class='cart2g'>&nbsp; ${p.prenom}</p>
+                            <p class='cart2'>Catégorie </p> <p class='cart2g'>&nbsp; ${v.libelle}</p>
                         </section>
                         <section class='ligne'>
-                            <p class='cart2'>Catégorie </p> <p class='cart2g'>&nbsp; ${p.libelleCategorie}</p>
+                            <p class='cart2'>Nombre </p> <p class='cart2g'>&nbsp; ${v.quantite}</p>
                         </section>
                         <section class='ligne'>
-                            <p class='cart2'>Prix </p> <p class='cart2g'>&nbsp; ${p.price}</p>
+                            <p class='cart2'>Prix </p> <p class='cart2g'>&nbsp; ${v.prix}</p>
                         </section>`
 
     ContainerPassager.innerHTML = codeHTML
-
-    document.getElementById("avant").disabled = index === 0;
-    document.getElementById("apres").disabled = index === passagers.length - 1;
 }
 
 
