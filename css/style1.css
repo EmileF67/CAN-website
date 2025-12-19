@@ -413,6 +413,42 @@ button#apres {
   right: 5%;
 }
 
+/*Pages stats et tableau*/
+
+p.rouge {
+    color: red;
+}
+
+p.vert {
+    color: rgb(2, 182, 2);
+}
+
+p.jaune {
+    color: yellow;
+}
+
+p.orange {
+    color: orange;
+}
+
+p.rougeV {
+    color: red;
+}
+
+p.vertV {
+    color: rgb(2, 182, 2);
+}
+
+p.jauneV {
+    color: yellow;
+}
+
+p.orangeV {
+    color: orange;
+}
+input#entrer {
+    margin-top: 50%;
+} 
 
 
 @media (min-width: 1920px) {
