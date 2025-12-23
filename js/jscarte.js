@@ -23,8 +23,8 @@ const getUneReservation = async (nb) => {
     //Traiter les données récupérées
     const ContainerReservations = document.getElementById('ContainerReservations');
 
-    let codeHTML = `<button id="avant" class="fleche">❮--</button>
-                    <button id="apres" class="fleche">--❯</button>
+    let codeHTML = `<button id="avant" class="fleche">❮</button>
+                    <button id="apres" class="fleche">❯</button>
                     <section class="carte">
                         <section class="datas1">
                             <img id="carte" src="../img/CANcarte.png" alt="Logo">

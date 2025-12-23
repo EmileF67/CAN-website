@@ -15,6 +15,7 @@ header{
 body {
     margin: 0;
     padding: 0;
+    color: white;
 }
 
 p {
@@ -177,6 +178,7 @@ p.foot {
 
 address {
     display: flex;
+    align-items: center;
     flex-direction: row;
     margin-bottom: 2%;
     
@@ -190,6 +192,21 @@ p.foot2 {
     padding-left: 5%;
     margin-top: 0%;
 }
+
+img.picto {
+    width: 10%;
+    height: 10%;
+}
+
+video.video1 {
+    width: 80%;
+    border-radius: 50px;
+    border-style: groove;
+    text-align: center;
+    margin-left: 10%;
+    margin-bottom: 2%;
+}
+
 /*Page facture*/
 
 article.facture {
@@ -400,8 +417,13 @@ button.fleche {
   z-index: 1000; /*En étant pas en position: static (position de base), la fleche peut être superposée par d'autre éléments. En mettant z-index à 1000 on s'assure qu'elle soit quand même cliquable (seul le nav à un plus gros z-index)*/
   background: none;
   border: none;
-  font-size: 2.5rem;
+  font-size: 5rem;
   cursor: pointer;
+  color: white;
+}
+
+button.fleche:disabled {
+    opacity: 0.5;
 }
 
 /*Placement par rapport au repère*/
@@ -450,6 +472,12 @@ input#entrer {
     margin-top: 50%;
 } 
 
+body.bodycart {
+    background-image: url("../img/fondcarte.png");
+    background-repeat: repeat;
+    background-size: 170%;
+    
+}
 
 @media (min-width: 1920px) {
     nav {
