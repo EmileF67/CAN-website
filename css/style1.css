@@ -298,11 +298,13 @@ table {
 
 th {
     border: solid;
+    color: black;
 }
 
 td {
     border: solid;
     text-align: center;
+    color: black;
 }
 
 section.soustot {
