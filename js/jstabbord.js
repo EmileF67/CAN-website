@@ -2,15 +2,21 @@
 function Changer(){
     const champ = document.getElementById("entrer").value
 
-    document.getElementsByClassName("infos")[1].textContent = ""
+    document.getElementsByClassName("infos")[0].textContent = ""
 
-    const art = document.getElementsByClassName("infos")[1]
+    const sect = document.getElementsByClassName("infos")[0]
 
-    art.innerHTML = `<input type="text" class="dateB" placeholder="veuiller inserer la date au format : yyyy-mm-jj">
-                    <input type = "button" id="date" value="Valider">`
+    sect.innerHTML = `
+                    <article class="artdate">
+                        <p>Entrez la date pour laquelle vous voulez consulter le taux de remplissage (Format AAAA-MM-JJ)</p>
+
+                        <input type="text" class="num2 dateB" placeholder="Exemple : 2025-11-01">
+
+                        <input type = "button" id="date" class="valid" value="Valider">
+                    </article>`
 
     let bt = document.getElementById("date")
-    bt.addEventListener("click",() => ClickE(art, champ))
+    bt.addEventListener("click",() => ClickE(sect, champ))
 
 }
 
@@ -19,60 +25,68 @@ let valid = document.getElementById("valider")
 
 valid.addEventListener("click",Changer)
 
-function ClickE(art, champ) {
-    const heure = document.getElementsByClassName("dateB")[0].value;
+function ClickE(sect, champ) {
+    const datel = document.getElementsByClassName("dateB")[0].value;
 
-    art.textContent = "";
+    sect.textContent = "";
 
     console.log("champ =", champ);
-    console.log("heure =", heure);
+    console.log("date =", datel);
 
     
     const getDonnees = async () => {
         try {
             const response = await fetch(
-                `https://can.iutrs.unistra.fr/api/liaison/${champ}/remplissage/${heure}`
+                `https://can.iutrs.unistra.fr/api/liaison/${champ}/remplissage/${datel}`
             );
 
             console.log("status =", response.status);
 
 
             if (!response.ok) {
+                alert("Aucune information pour cette liaison et cette date ! Veuillez recommencer la saisie.")
                 throw new Error("Erreur réseau !");
             }
 
             const data = await response.json();
             console.log(data);
 
+            let couleur
+            let couleurV
+
             for (let i = 0; i < data.length; i++) {
-                if(data[i].capacitePassagers - data[i].nbReservationPassagers >= data[i].capacitePassagers/2){
+                if(data[i].nbReservationPassagers / data[i].capacitePassagers <= 0.5){
                     couleur = "vert"
                 }else{
-                    if((data[i].capacitePassagers - data[i].nbReservationPassagers < data[i].capacitePassagers/2) && (data[i].capacitePassagers - data[i].nbReservationPassagers < data[i].capacitePassagers/4)){
+                    if(data[i].nbReservationPassagers / data[i].capacitePassagers <= 0.75){
                         couleur="orange"
                     }else{
-                        if((data[i].capacitePassagers - data[i].nbReservationPassagers < data[i].capacitePassagers/4) && (data[i].nbReservationPassagers == data[i].capacitePassagers)){
+                        if(data[i].nbReservationPassagers / data[i].capacitePassagers <= 1){
                             couleur = "rouge"
                         }else{
                             couleur="jaune"
                         }
                     }
                 }
-                if(data[i].capaciteVoitures - data[i].nbReservationVoitures >= data[i].capaciteVoitures/2){
+                if(data[i].nbReservationVoitures / data[i].capaciteVoitures <= 0.5){
                     couleurV = "vertV"
                 }else{
-                    if((data[i].capaciteVoitures - data[i].nbReservationVoitures < data[i].capaciteVoitures/2) && (data[i].capaciteVoitures - data[i].nbReservationVoitures < data[i].capaciteVoitures/4)){
+                    if(data[i].nbReservationVoitures / data[i].capaciteVoitures <= 0.75){
                         couleurV="orangeV"
                     }else{
-                        if((data[i].capaciteVoitures - data[i].nbReservationVoitures < data[i].capaciteVoitures/4) && (data[i].nbReservationVoitures == data[i].capaciteVoitures)){
+                        if(data[i].nbReservationVoitures / data[i].capaciteVoitures <= 1){
                             couleurV = "rougeV"
                         }else{
                             couleurV="jauneV"
                         }
                     }
                 }
-                art.innerHTML += `<p class="${couleur}">Pour l'Horraire --> ${data[i].heure}, l'occupation est de : ${data[i].nbReservationPassagers} passagers, il reste : ${data[i].capacitePassagers - data[i].nbReservationPassagers} places !</p>
-                                <p class="${couleurV}">Pour les véhicules l'occupation est de : ${data[i].nbReservationVoitures}, et le restants de place est de : ${data[i].capaciteVoitures - data[i].nbReservationVoitures}</p>`
+                sect.innerHTML += `<article class="artdate">
+                                <p class="ptab">Pour l'Horraire --> ${data[i].heure}: </p>
+                                <p class="${couleur}"> L'occupation des passagers est de : ${data[i].nbReservationPassagers}, il reste : ${data[i].capacitePassagers - data[i].nbReservationPassagers} places !</p>
+                                <p class="${couleurV}">L'occupation des véhicules est de : ${data[i].nbReservationVoitures}, il reste : ${data[i].capaciteVoitures - data[i].nbReservationVoitures} places !</p>
+                                </article>`
+
             }
 
         } catch (error) {

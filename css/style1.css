@@ -325,6 +325,13 @@ img#symbg {
 
 /*Cartes d'embarquement*/
 
+body.bodycart {
+    background-image: url("../img/fondcarte.png");
+    background-repeat: repeat;
+    background-size: 170%;
+    
+}
+
 section.carte {
     margin-left: 19%;
     margin-right: 19%;
@@ -432,47 +439,92 @@ button#apres {
 
 /*Pages stats et tableau*/
 
+body.bodytab {
+    background-image: url("../img/fondtab.jpg");
+    background-repeat: repeat;
+    background-size: 155%;
+    
+}
+
+section.infos {
+    flex-direction: column;
+}
+
 p.rouge {
     color: red;
+    font-weight: bold;
+    font-size: 1.25rem;
 }
 
 p.vert {
     color: rgb(2, 182, 2);
+    font-weight: bold;
+    font-size: 1.25rem;
 }
 
 p.jaune {
     color: yellow;
+    font-weight: bold;
+    font-size: 1.25rem;
 }
 
 p.orange {
     color: orange;
+    font-weight: bold;
+    font-size: 1.25rem;
 }
 
 p.rougeV {
     color: red;
+    font-weight: bold;
+    font-size: 1.25rem;
 }
 
 p.vertV {
     color: rgb(2, 182, 2);
+    font-weight: bold;
+    font-size: 1.25rem;
 }
 
 p.jauneV {
     color: yellow;
+    font-weight: bold;
+    font-size: 1.25rem;
 }
 
 p.orangeV {
     color: orange;
+    font-weight: bold;
+    font-size: 1.25rem;
 }
+
+p.ptab {
+    font-size: 1.25rem;
+}
+
 input#entrer {
-    margin-top: 50%;
+    margin-top: 0.5%;
 } 
 
-body.bodycart {
-    background-image: url("../img/fondcarte.png");
-    background-repeat: repeat;
-    background-size: 170%;
-    
+article.artdate {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+
+input.num2 {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  font-size: 16px;
+  margin-top :0.5%;
+  margin-bottom: 7%;
+  width: 65%;
+}
+
+
 
 @media (min-width: 1920px) {
     nav {
