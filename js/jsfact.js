@@ -296,7 +296,7 @@ const getUneReservation = async (nb) => {
                         <p class='fact'>Sous total véhicules : <span>&nbsp; ${arrondir(tarifvtot).toString().replace('.', ',')}€</span></p>
                     </section>
                     <section class='soustot'>
-                        <p class='fact'>Prix total : <span>&nbsp; ${arrondir(tariftotal).toString().replace('.', ',')}€</span></p>
+                        <p class='fact'>Prix total : <span><strong>&nbsp; ${arrondir(tariftotal).toString().replace('.', ',')}€</strong></span></p>
                     </section>
                     </section>`
         

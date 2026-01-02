@@ -442,10 +442,11 @@ button#apres {
 /*Pages stats et tableau*/
 
 body.bodytab {
-    background-image: url("../img/fondtab.jpg");
-    background-repeat: repeat;
-    background-size: 155%;
-    
+    background-color: #141c73;
+    background-image: url("../img/CANsymbolegauche.png"), url("../img/CANsymboledroite.png");
+    background-repeat: no-repeat, no-repeat;
+    background-position: left center, right center;
+    background-size: 120px, 120px;
 }
 
 section.infos {
@@ -526,6 +527,60 @@ input.num2 {
   width: 65%;
 }
 
+body.bodystat {
+    background-image: url("../img/fondtab.jpg");
+    background-repeat: no-repeat;
+    background-size: 155%;
+    
+}
+
+input.valid2 {
+    border-radius: 50px;
+    height: 50%;
+    padding: 15px 40px;
+    background-color: rgb(44, 158, 192);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 10%;
+}
+
+article.artstats {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	background-color:rgba(0, 0, 0, 0.4);
+    width: 100%;
+	border-radius: 20px;
+	margin-bottom: 0%;
+	margin-top:11%;
+    padding-bottom: 19%;
+    box-shadow: 0 0 20px 8px rgba(0,0,0,0.5); /*Le troisième paramètre (20px ici) définit la puissance du flou. */
+    /*Le quatrième paramètre (8px ici) gère l’étalement du flou autour de l’élément. Premier 0 = décalage horizontal, Deuxième 0 = décalage vertical. 0.5 dans rgba = canal alpha = niveau d'opacité*/
+}
+
+table.stats {
+    margin-top: 2%;
+    width: 80%;
+    color: white;
+}
+
+th.thstats {
+    border: solid;
+    color: white;
+}
+
+td.tdstats {
+    border: solid;
+    text-align: center;
+    color: white;
+}
 
 
 @media (min-width: 1920px) {
