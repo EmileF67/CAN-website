@@ -601,3 +601,113 @@ td.tdstats {
 
     }
 }
+
+/*Page cartes d'embarquements responsive pour smartphone*/
+@media (max-width: 768px) {
+
+  html {
+    font-size: 14px;
+    background-size: cover;
+  }
+
+  section {
+    flex-direction: column;
+  }
+
+  ul {
+    flex-direction: column;
+    gap: 10px;
+    padding: 5%;
+  }
+
+  nav {
+    flex-direction: column;
+    width: 50%;
+    position: static;
+    margin-left: 1%;
+    padding: 0%;
+    
+  }
+
+  li {
+    margin-left: 10%;
+    height: 10%;
+  }
+
+  img#Logo {
+    position: static;
+    height: 160px;
+    width: 50%;
+    margin-left: 2%;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+
+  input.num {
+    width: 70%;
+  }
+
+  article.facture {
+    margin-top: 2%;
+  }
+
+  section.carte {
+    flex-direction: column;
+    margin: 5%;
+    padding: 5%;
+    border-radius: 25px;
+  }
+  
+  section.blanc {
+    border-radius: 25px;
+  }
+
+  section.datas1 {
+    width: 100%;
+    text-align: center;
+    padding: -25px;
+  }
+
+  section.datas2 {
+    width: 100%;
+    text-align: center;
+  }
+
+  img#carte {
+    margin-left: 10%;
+  }
+
+  img#qrcode {
+    width: 80%;
+    margin-left: 10%;
+  }
+
+   button.fleche {
+    top: auto;
+    /*On s'en fout de l'ancienne valeur de top, palce de l'elt contrôlé par bottom*/
+    bottom: -60px;
+    
+  }
+
+  button#avant {
+    left: 20%;
+  }
+
+  button#apres {
+    right: 20%;
+  }
+  
+  address {
+    flex-direction: column;
+  }
+
+  p.foot {
+    text-align: center;
+  }
+
+  
+}
+
+
