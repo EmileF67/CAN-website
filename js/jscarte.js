@@ -1,3 +1,20 @@
+const nav = document.querySelector("nav");
+const logo = document.getElementById("Logo");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) 
+    /*Quand l'axe de scroll vertical est supérieur à 50*/
+    {
+    nav.classList.add("retrecit");
+    logo.classList.add("retrecit");
+    } 
+    else 
+    {
+    nav.classList.remove("retrecit");
+    logo.classList.remove("retrecit");
+    }
+});
+
 var passagers = []
 var vehicules = []
 var index = 0

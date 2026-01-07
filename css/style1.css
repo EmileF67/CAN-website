@@ -73,12 +73,15 @@ a {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
     text-decoration: none;
-    line-height: 100%;
+    line-height: 100%; /*Espace occupé par la ligne*/
     color: rgb(68, 31, 138);
-    transition: transform 0.2s ease; /*Permet de faire une animation de transition quand on transforme des boutons (avec hoover par exemple)*/
+    transition: 
+        transform 0.2s ease, /*Permet de faire une animation de transition quand transform change*/
+        padding 0.5s ease; /*Permet de faire une animation de transition quand le padding change*/
 }
+
 a:hover {
-    transform: scale(1.1);
+    transform: scale(1.1); /*transform change (grossissement)*/
 }
 
 a.petit {
@@ -580,6 +583,34 @@ td.tdstats {
     border: solid;
     text-align: center;
     color: white;
+}
+
+/*Animation quand on scroll*/
+
+nav {
+    transition: padding 0.5s ease /*Animation de transition quand le padding change, ease = animation de plus en plus rapide*/
+}
+
+img#Logo {
+  transition: width 0.5s ease /*Animation de transition quand la largeur change, ease = animation de plus en plus rapide*/
+}
+
+nav.retrecit {
+    padding-top: 0.1%;
+    padding-bottom: 0.1%;
+}
+
+nav.retrecit a {
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+nav.retrecit a.petit {
+    padding-top: 5%;
+}
+
+img#Logo.retrecit {
+    width: 11.3%;
 }
 
 

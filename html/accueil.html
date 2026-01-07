@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <title>la CAN</title>
     <link rel="stylesheet" href="../css/style1.css">
-    <script src="../js/script1.js"></script>
 
 </head>
 <body>
@@ -56,5 +55,19 @@
         <p class="foot2">Herlin Yanis, Metz Baptiste, Flatter Emile TP5</p>
         <p class ="foot2">IUT Robert Schuman, Illkirch-Grafenstaden, 2026, Tous droits Réservés</p></p>
     </footer>
+    <script>
+    const nav = document.querySelector("nav");
+    const logo = document.getElementById("Logo");
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+        nav.classList.add("retrecit");
+        logo.classList.add("retrecit");
+        } else {
+        nav.classList.remove("retrecit");
+        logo.classList.remove("retrecit");
+        }
+    });
+    </script>
 </body>
 </html>
