@@ -1,9 +1,11 @@
+// --- Partie Gestion de la navigation  ---
+// Déclaration
 const nav = document.querySelector("nav");
 const logo = document.getElementById("Logo");
 
 window.addEventListener("scroll", () => {
+    // Quand l'axe de scroll vertical est supérieur à 50
     if (window.scrollY > 50) 
-    /*Quand l'axe de scroll vertical est supérieur à 50*/
     {
     nav.classList.add("retrecit");
     logo.classList.add("retrecit");
@@ -15,6 +17,9 @@ window.addEventListener("scroll", () => {
     }
 });
 
+// --- Partie affichage des infos du tableau de bord ---
+
+// Fonction utilitaire permettant de demander la date pour laquel l'utilisateur veut consulter les informations.
 function Changer(){
     const champ = document.getElementById("entrer").value
 
@@ -33,7 +38,6 @@ function Changer(){
 
     let bt = document.getElementById("date")
     bt.addEventListener("click",() => ClickE(sect, champ))
-
 }
 
 

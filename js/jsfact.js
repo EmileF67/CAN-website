@@ -19,59 +19,59 @@ window.addEventListener("scroll", () => {
 
 // --- Partie d'obtention et d'affichage de la facture d'une réservation ---
 // Déclaration
-var nbenfant = 0
-var nbjeune = 0
-var nbadulte = 0
-var nbbebe = 0
-var nbanimal = 0
+var nbenfant
+var nbjeune
+var nbadulte
+var nbbebe
+var nbanimal
 
-var tarifenfant = 0
-var tarifjeune = 0
-var tarifadulte = 0
-var tarifanimal = 0
-var tarifptot = 0
+var tarifenfant
+var tarifjeune
+var tarifadulte
+var tarifanimal
+var tarifptot
 
-var nbtrot = 0
-var nbvelo = 0
-var nbvelelec = 0
-var nbcartand = 0
-var nbmobil = 0
-var nbmoto = 0
-var nbcat1 = 0
-var nbcat2 = 0
-var nbcat3 = 0
-var nbcat4 = 0
-var nbcamp = 0
+var nbtrot
+var nbvelo
+var nbvelelec
+var nbcartand
+var nbmobil
+var nbmoto
+var nbcat1
+var nbcat2
+var nbcat3
+var nbcat4
+var nbcamp
 
-var tariftrot = 0
-var tarifvelo = 0
-var tarifvelelec = 0
-var tarifcartand = 0
-var tarifmobil = 0
-var tarifmoto = 0
-var tarifcat1 = 0
-var tarifcat2 = 0
-var tarifcat3 = 0
-var tarifcat4 = 0
-var tarifcamp = 0
-var tarifvtot = 0
-var tariftotal = 0
+var tariftrot
+var tarifvelo
+var tarifvelelec
+var tarifcartand
+var tarifmobil
+var tarifmoto
+var tarifcat1
+var tarifcat2
+var tarifcat3
+var tarifcat4
+var tarifcamp
+var tarifvtot
+var tariftotal
 
-var tariftrotseul = 0
-var tarifveloseul = 0
-var tarifvelelecseul = 0
-var tarifcartandseul = 0
-var tarifmobilseul = 0
-var tarifmotoseul = 0
-var tarifcat1seul = 0
-var tarifcat2seul = 0
-var tarifcat3seul = 0
-var tarifcat4seul = 0
-var tarifcampseul = 0
-var tarifenfantseul = 0
-var tarifjeuneseul = 0
-var tarifadulteseul = 0
-var tarifanimalseul = 0
+var tariftrotseul
+var tarifveloseul
+var tarifvelelecseul
+var tarifcartandseul
+var tarifmobilseul
+var tarifmotoseul
+var tarifcat1seul
+var tarifcat2seul
+var tarifcat3seul
+var tarifcat4seul
+var tarifcampseul
+var tarifenfantseul
+var tarifjeuneseul
+var tarifadulteseul
+var tarifanimalseul
 
 // Début de la gestion d'une réservation (identifiant n°<nb>)
 const getUneReservation = async (nb) => {
@@ -493,67 +493,67 @@ const getUnVehicule = async (port, nbr, nbv) => {
         // Gestion des tarifs en fonction du trajet
         if (port === "Lorient" || port === "Port-Tudy")
         {
-            if(data.code === "trot")
+            if (data.code === "trot")
             {
                 nbtrot += 1
                 tariftrot += 4.70
                 tariftrotseul = 4.70
             }
-            if(data.code === "velo")
+            if (data.code === "velo")
             {
                 nbvelo += 1
                 tarifvelo += 8.20
                 tarifveloseul = 8.20
             }
-            if(data.code === "velelec")
+            if (data.code === "velelec")
             {
                 nbvelelec += 1
                 tarifvelelec += 11.00
                 tarifvelelecseul = 11.00
             }
-            if(data.code === "cartand")
+            if (data.code === "cartand")
             {
                 nbcartand += 1
                 tarifcartand += 16.45
                 tarifcartandseul = 16.45
             }
-            if(data.code === "mobil")
+            if (data.code === "mobil")
             {
                 nbmobil += 1
                 tarifmobil += 23.10
                 tarifmobilseul = 23.10
             }
-            if(data.code === "moto")
+            if (data.code === "moto")
             {
                 nbmoto += 1
                 tarifmoto += 66.05
                 tarifmotoseul = 66.05
             }
-            if(data.code === "cat1")
+            if (data.code === "cat1")
             {
                 nbcat1 += 1
                 tarifcat1 += 96.05
                 tarifcat1seul = 96.05
             }
-            if(data.code === "cat2")
+            if (data.code === "cat2")
             {
                 nbcat2 += 1
                 tarifcat2 += 114.80
                 tarifcat2seul = 114.80
             }
-            if(data.code === "cat3")
+            if (data.code === "cat3")
             {
                 nbcat3 += 1
                 tarifcat3 += 174.45
                 tarifcat3seul = 174.45
             }
-            if(data.code === "cat4")
+            if (data.code === "cat4")
             {
                 nbcat4 += 1
                 tarifcat4 += 210.90
                 tarifcat4seul = 210.90
             }
-            if(data.code === "camp")
+            if (data.code === "camp")
             {
                 nbcamp += 1
                 tarifcamp += 330.20
@@ -562,67 +562,67 @@ const getUnVehicule = async (port, nbr, nbv) => {
         }
         else
         {
-            if(data.code === "trot")
+            if (data.code === "trot")
             {
                 nbtrot += 1
                 tariftrot += 4.70
                 tariftrotseul = 4.70
             }
-            if(data.code === "velo")
+            if (data.code === "velo")
             {
                 nbvelo += 1
                 tarifvelo += 8.20
                 tarifveloseul = 8.20
             }
-            if(data.code === "velelec")
+            if (data.code === "velelec")
             {
                 nbvelelec += 1
                 tarifvelelec += 11.00
                 tarifvelelecseul = 11.00
             }
-            if(data.code === "cartand")
+            if (data.code === "cartand")
             {
                 nbcartand += 1
                 tarifcartand += 16.45
                 tarifcartandseul = 16.45
             }
-            if(data.code === "mobil")
+            if (data.code === "mobil")
             {
                 nbmobil += 1
                 tarifmobil += 23.35
                 tarifmobilseul = 23.35
             }
-            if(data.code === "moto")
+            if (data.code === "moto")
             {
                 nbmoto += 1
                 tarifmoto += 66.40
                 tarifmotoseul = 66.40
             }
-            if(data.code === "cat1")
+            if (data.code === "cat1")
             {
                 nbcat1 += 1
                 tarifcat1 += 98.50
                 tarifcat1seul = 98.50
             }
-            if(data.code === "cat2")
+            if (data.code === "cat2")
             {
                 nbcat2 += 1
                 tarifcat2 += 117.20
                 tarifcat2seul = 117.20
             }
-            if(data.code === "cat3")
+            if (data.code === "cat3")
             {
                 nbcat3 += 1
                 tarifcat3 += 176.90
                 tarifcat3seul = 176.90
             }
-            if(data.code === "cat4")
+            if (data.code === "cat4")
             {
                 nbcat4 += 1
                 tarifcat4 += 213.35
                 tarifcat4seul = 213.35
             }
-            if(data.code === "camp")
+            if (data.code === "camp")
             {
                 nbcamp += 1
                 tarifcamp += 332.70
@@ -639,13 +639,15 @@ const getUnVehicule = async (port, nbr, nbv) => {
     }
 };
 
+// Fonction utilitaire : arrondir à deux décimal
+function arrondir(n) {
+    return Math.round(n * 100) / 100;
+}
+
+// --- Partie de la gestion du bouton valider sur la page cartes_embarquement ---
+// Déclaration
 let valider = document.getElementById("bout")
 valider.addEventListener("click", function() {
     const valeur = document.getElementById("nom").value;
     getUneReservation(valeur)
 });
-
-//Pour arrondir à deux décimal
-function arrondir(n) {
-    return Math.round(n * 100) / 100;
-}
