@@ -1,9 +1,11 @@
+// --- Partie Gestion de la navigation  ---
+// Déclaration
 const nav = document.querySelector("nav");
 const logo = document.getElementById("Logo");
 
 window.addEventListener("scroll", () => {
+    // Quand l'axe de scroll vertical est supérieur à 50
     if (window.scrollY > 50) 
-    /*Quand l'axe de scroll vertical est supérieur à 50*/
     {
     nav.classList.add("retrecit");
     logo.classList.add("retrecit");
@@ -15,11 +17,15 @@ window.addEventListener("scroll", () => {
     }
 });
 
+// --- Partie concernant toutes les statistiques à afficher ---
+// Déclaration
 const art = document.getElementsByClassName("artstats")[0];
 const but = document.getElementsByClassName("affiche")[0];
-
+// Bouton afficher les stats
 but.addEventListener("click", Afficher);
 
+// Fonction Afficher, qui attribuée au bouton afficher les stats va récupérer 
+// les informations nécessaires pour ensuite les formatter et les afficher sur le site.
 async function Afficher() {
     art.textContent = "";
     let sommeCaPass = 0;
@@ -27,6 +33,7 @@ async function Afficher() {
     let totalPass = 0;
     let totalVoit = 0;
 
+    // Noms des colonnes du tableau
     art.innerHTML = `
         <h1 class="titrepage">Novembre 2025</h1>
         <table class="stats">
@@ -42,10 +49,12 @@ async function Afficher() {
             <tbody id="donneetab"></tbody>
         </table>`
 
-        const donneetab = document.getElementById("donneetab");
+    const donneetab = document.getElementById("donneetab");
 
+    // Pour chaque liaisons
     for (let i = 1; i <= 4; i++) {
         try {
+            // Récupération d'information classique
             const response = await fetch(
                 `https://can.iutrs.unistra.fr/api/liaison/${i}/chiffreAffaire`
             );
@@ -56,11 +65,13 @@ async function Afficher() {
 
             const data = await response.json();
 
+            // Ajouter les chiffres aux totaux
             sommeCaPass += data.passagers.chiffreAffaire;
             sommeCaVoit += data.vehicules.chiffreAffaire;
             totalPass += data.passagers.nombre;
             totalVoit += data.vehicules.quantite;
-
+            
+            // Une ligne du tableau qui contient les infos de la liaison <i>
             donneetab.innerHTML += `
                 <tr>
                     <td class="tdstats">Liaison ${i}</td>
@@ -74,7 +85,8 @@ async function Afficher() {
             console.error("Erreur :", error);
         }
     }
-
+    
+    // La ligne du total du tableau
     donneetab.innerHTML += `
                 <tr class="total">
                     <td class="tdstats"><strong>Total</strong></td>
