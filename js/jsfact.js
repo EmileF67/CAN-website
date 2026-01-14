@@ -1,9 +1,11 @@
+// --- Partie Gestion de la navigation  ---
+// Déclaration
 const nav = document.querySelector("nav");
 const logo = document.getElementById("Logo");
 
 window.addEventListener("scroll", () => {
+    // Quand l'axe de scroll vertical est supérieur à 50
     if (window.scrollY > 50) 
-    /*Quand l'axe de scroll vertical est supérieur à 50*/
     {
     nav.classList.add("retrecit");
     logo.classList.add("retrecit");
@@ -15,6 +17,8 @@ window.addEventListener("scroll", () => {
     }
 });
 
+// --- Partie d'obtention et d'affichage de la facture d'une réservation ---
+// Déclaration
 var nbenfant = 0
 var nbjeune = 0
 var nbadulte = 0
@@ -69,9 +73,9 @@ var tarifjeuneseul = 0
 var tarifadulteseul = 0
 var tarifanimalseul = 0
 
-
+// Début de la gestion d'une réservation (identifiant n°<nb>)
 const getUneReservation = async (nb) => {
-    try{
+    try {
         nbenfant = 0
         nbjeune = 0
         nbadulte = 0
@@ -130,134 +134,147 @@ const getUneReservation = async (nb) => {
 
         document.getElementById('ContainerReservations').textContent = ""
 
-    const response = await
-        fetch(`https://can.iutrs.unistra.fr/api/reservation/${nb}`)
-    //Vérifier si la réponse est correcte
-    if(!response.ok) {
-            alert("Aucune réservation trouvée. Veuillez entrer un autre numéro de réservation")
-            throw new Error('Erreur de réseau !')
-    }
-    //Sinon Retourner le résultat au format JSON
-    const data = await response.json()
-    //Traiter les données récupérées
-    const ContainerReservations = document.getElementById('ContainerReservations');
+        // Obtenir les détails de la réservation n°<nb>
+        const response = await fetch(`https://can.iutrs.unistra.fr/api/reservation/${nb}`)
 
-    for(let i = 0; i < data.nbPassagers; i ++)
-			{
-				await getUnPassager(data.portDepart, nb, i+1);
-			}
+        // Vérifier si la réponse est correcte, sinon alerter l'utilisateur.
+        if (!response.ok) {
+                alert("Aucune réservation trouvée. Veuillez entrer un autre numéro de réservation")
+                throw new Error('Erreur de réseau !')
+        }
 
-    for(let i = 0; i < data.nbVehicules; i ++)
-			{
-				await getUnVehicule(data.portDepart, nb, i+1);
-			}
+        // Transformer le résultat au format JSON.
+        const data = await response.json()
 
-    let ligneP = ""
+        // -- Traiter les données récupérées --
+        // Obtenir l'endroit où l'on va afficher les réservations
+        const ContainerReservations = document.getElementById('ContainerReservations');
 
-    let ligneV = ""
+        // Ajouter tous les passagers à la liste
+        for (let i = 0; i < data.nbPassagers; i ++)
+	    {
+	    	await getUnPassager(data.portDepart, nb, i+1);
+	    }
 
-    if(nbadulte > 0) 
-    {
-        ligneP += `<tr>
-						<td>Adulte 26 ans et plus</td> 	<td>${nbadulte}</td> <td>${tarifadulteseul.toString().replace('.', ',')}</td> <td>${tarifadulte.toString().replace('.', ',')}</td>
-					</tr>`
-    }
-    if(nbjeune > 0) 
-    {
-        ligneP += `<tr>
-						<td>Jeune 18 à 25 ans inclus</td> 	<td>${nbjeune}</td> <td>${tarifjeuneseul.toString().replace('.', ',')}</td> <td>${tarifjeune.toString().replace('.', ',')}</td>
-					</tr>`
-    }
-    if(nbenfant > 0) 
-    {
-        ligneP += `<tr>
-						<td>Enfant 4 à 17 inclus</td> 	<td>${nbenfant}</td> <td>${tarifenfantseul.toString().replace('.', ',')}</td> <td>${tarifenfant.toString().replace('.', ',')}</td>
-					</tr>`
-    }
-    if(nbbebe > 0) 
-    {
-        ligneP += `<tr>
-						<td>Bébé moins de 4 ans</td> 	<td>${nbbebe}</td> <td>gratuit</td> <td>0</td>
-					</tr>`
-    }
-    if(nbanimal > 0) 
-    {
-        ligneP += `<tr>
-						<td>Animal de compagnie</td> 	<td>${nbanimal}</td> <td>3,35</td> <td>${tarifanimal.toString().replace('.', ',')}</td>
-					</tr>`
-    }
-    if(nbtrot > 0) 
-    {
-        ligneV += `<tr>
-						<td>Trottinette électrique</td> 	<td>${nbtrot}</td> <td>${tariftrotseul.toString().replace('.', ',')}</td> <td>${tariftrot.toString().replace('.', ',')}</td>
-					</tr>`
-    }
-    if(nbvelo > 0) 
-    {
-        ligneV += `<tr>
-						<td>Vélo ou remorque à vélo</td> 	<td>${nbvelo}</td> <td>${tarifveloseul.toString().replace('.', ',')}</td> <td>${tarifvelo.toString().replace('.', ',')}</td>
-					</tr>`
-    }
-    if(nbvelelec > 0) 
-    {
-        ligneV += `<tr>
-						<td>Vélo électrique </td> 	<td>${nbvelelec}</td> <td>${tarifvelelecseul.toString().replace('.', ',')}</td> <td>${tarifvelelec.toString().replace('.', ',')}</td>
-					</tr>`
-    }
-    if(nbcartand > 0) 
-    {
-        ligneV += `<tr>
-						<td>Vélo cargo ou tandem </td> 	<td>${nbcartand}</td> <td>${tarifcartandseul.toString().replace('.', ',')}</td> <td>${tarifcartand.toString().replace('.', ',')}</td>
-					</tr>`
-    }
-    if(nbmobil > 0) 
-    {
-        ligneV += `<tr>
-						<td>Deux-roues <= 125 cm3</td> 	<td>${nbmobil}</td> <td>${tarifmobilseul.toString().replace('.', ',')}</td> <td>${tarifmobil.toString().replace('.', ',')}</td>
-					</tr>`
-    }
-    if(nbmoto > 0) 
-    {
-        ligneV += `<tr>
-						<td>Deux-roues > 125 cm3</td> 	<td>${nbmoto}</td> <td>${tarifmotoseul.toString().replace('.', ',')}</td> <td>${tarifmoto.toString().replace('.', ',')}</td>
-					</tr>`
-    }
-    if(nbcat1> 0) 
-    {
-        ligneV += `<tr>
-						<td>Voiture moins de 4 m</td> 	<td>${nbcat1}</td> <td>${tarifcat1seul.toString().replace('.', ',')}</td> <td>${tarifcat1.toString().replace('.', ',')}</td>
-					</tr>`
-    }
-    if(nbcat2 > 0) 
-    {
-        ligneV += `<tr>
-						<td>Voiture de 4 m à 4,39 m</td> 	<td>${nbcat2}</td> <td>${tarifcat2seul.toString().replace('.', ',')}</td> <td>${tarifcat2.toString().replace('.', ',')}</td>
-					</tr>`
-    }
-    if(nbcat3 > 0) 
-    {
-        ligneV += `<tr>
-						<td>Voiture de 4,40 m à 4,79 m</td> 	<td>${nbcat3}</td> <td>${tarifcat3seul.toString().replace('.', ',')}</td> <td>${tarifcat3.toString().replace('.', ',')}</td>
-					</tr>`
-    }
-    if(nbcat4 > 0) 
-    {
-        ligneV += `<tr>
-						<td>Voiture 4,80 m et plus</td> 	<td>${nbcat4}</td> <td>${tarifcat4seul.toString().replace('.', ',')}</td> <td>${tarifcat4.toString().replace('.', ',')}</td>
-					</tr>`
-    }
-    if(nbcamp > 0) 
-    {
-        ligneV += `<tr>
-						<td>Camping-car - véhicule plus de 2,10 de haut</td> 	<td>${nbcamp}</td> <td>${tarifcampseul.toString().replace('.', ',')}</td> <td>${tarifcamp.toString().replace('.', ',')}</td>
-					</tr>`
-    }
+        // Ajouter tous les véhicules à la liste
+        for (let i = 0; i < data.nbVehicules; i ++)
+	    {
+	    	await getUnVehicule(data.portDepart, nb, i+1);
+	    }
 
-    tariftotal = tarifvtot + tarifptot
+        // Déclaration
+        let ligneP = ""
+        let ligneV = ""
+
+        // Pour chaque type existant (passagers et véhicules) ajouter une ligne dans le tableau avec :
+        //  - Catégorie
+        //  - Nombre
+        //  - Prix unitaire
+        //  - Prix en ligne
+        if(nbadulte > 0) 
+        {
+            ligneP += `<tr>
+	    				<td>Adulte 26 ans et plus</td> 	<td>${nbadulte}</td> <td>${tarifadulteseul.toString().replace('.', ',')}</td> <td>${tarifadulte.toString().replace('.', ',')}</td>
+	    			   </tr>`
+        }
+        if(nbjeune > 0) 
+        {
+            ligneP += `<tr>
+	    			  	<td>Jeune 18 à 25 ans inclus</td> 	<td>${nbjeune}</td> <td>${tarifjeuneseul.toString().replace('.', ',')}</td> <td>${tarifjeune.toString().replace('.', ',')}</td>
+	    			   </tr>`
+        }
+        if(nbenfant > 0) 
+        {
+            ligneP += `<tr>
+	    			  	<td>Enfant 4 à 17 inclus</td> 	<td>${nbenfant}</td> <td>${tarifenfantseul.toString().replace('.', ',')}</td> <td>${tarifenfant.toString().replace('.', ',')}</td>
+	    			   </tr>`
+        }
+        if(nbbebe > 0) 
+        {
+            ligneP += `<tr>
+	    			  	<td>Bébé moins de 4 ans</td> 	<td>${nbbebe}</td> <td>gratuit</td> <td>0</td>
+	    			   </tr>`
+        }
+        if(nbanimal > 0) 
+        {
+            ligneP += `<tr>
+	    			  	<td>Animal de compagnie</td> 	<td>${nbanimal}</td> <td>3,35</td> <td>${tarifanimal.toString().replace('.', ',')}</td>
+	    			   </tr>`
+        }
+        if(nbtrot > 0) 
+        {
+            ligneV += `<tr>
+	    			  	<td>Trottinette électrique</td> 	<td>${nbtrot}</td> <td>${tariftrotseul.toString().replace('.', ',')}</td> <td>${tariftrot.toString().replace('.', ',')}</td>
+	    			   </tr>`
+        }
+        if(nbvelo > 0) 
+        {
+            ligneV += `<tr>
+	    			  	<td>Vélo ou remorque à vélo</td> 	<td>${nbvelo}</td> <td>${tarifveloseul.toString().replace('.', ',')}</td> <td>${tarifvelo.toString().replace('.', ',')}</td>
+	    			   </tr>`
+        }
+        if(nbvelelec > 0) 
+        {
+            ligneV += `<tr>
+	    			  	<td>Vélo électrique </td> 	<td>${nbvelelec}</td> <td>${tarifvelelecseul.toString().replace('.', ',')}</td> <td>${tarifvelelec.toString().replace('.', ',')}</td>
+	    			   </tr>`
+        }
+        if(nbcartand > 0) 
+        {
+            ligneV += `<tr>
+	    			  	<td>Vélo cargo ou tandem </td> 	<td>${nbcartand}</td> <td>${tarifcartandseul.toString().replace('.', ',')}</td> <td>${tarifcartand.toString().replace('.', ',')}</td>
+	    			   </tr>`
+        }
+        if(nbmobil > 0) 
+        {
+            ligneV += `<tr>
+	    			  	<td>Deux-roues <= 125 cm3</td> 	<td>${nbmobil}</td> <td>${tarifmobilseul.toString().replace('.', ',')}</td> <td>${tarifmobil.toString().replace('.', ',')}</td>
+	    			   </tr>`
+        }
+        if(nbmoto > 0) 
+        {
+            ligneV += `<tr>
+	    			  	<td>Deux-roues > 125 cm3</td> 	<td>${nbmoto}</td> <td>${tarifmotoseul.toString().replace('.', ',')}</td> <td>${tarifmoto.toString().replace('.', ',')}</td>
+	    			   </tr>`
+        }
+        if(nbcat1> 0) 
+        {
+            ligneV += `<tr>
+	    			  	<td>Voiture moins de 4 m</td> 	<td>${nbcat1}</td> <td>${tarifcat1seul.toString().replace('.', ',')}</td> <td>${tarifcat1.toString().replace('.', ',')}</td>
+	    			   </tr>`
+        }
+        if(nbcat2 > 0) 
+        {
+            ligneV += `<tr>
+	    			  	<td>Voiture de 4 m à 4,39 m</td> 	<td>${nbcat2}</td> <td>${tarifcat2seul.toString().replace('.', ',')}</td> <td>${tarifcat2.toString().replace('.', ',')}</td>
+	    			   </tr>`
+        }
+        if(nbcat3 > 0) 
+        {
+            ligneV += `<tr>
+	    			  	<td>Voiture de 4,40 m à 4,79 m</td> 	<td>${nbcat3}</td> <td>${tarifcat3seul.toString().replace('.', ',')}</td> <td>${tarifcat3.toString().replace('.', ',')}</td>
+	    			   </tr>`
+        }
+        if(nbcat4 > 0) 
+        {
+            ligneV += `<tr>
+	    			  	<td>Voiture 4,80 m et plus</td> 	<td>${nbcat4}</td> <td>${tarifcat4seul.toString().replace('.', ',')}</td> <td>${tarifcat4.toString().replace('.', ',')}</td>
+	    			   </tr>`
+        }
+        if(nbcamp > 0) 
+        {
+            ligneV += `<tr>
+	    			  	<td>Camping-car - véhicule plus de 2,10 de haut</td> 	<td>${nbcamp}</td> <td>${tarifcampseul.toString().replace('.', ',')}</td> <td>${tarifcamp.toString().replace('.', ',')}</td>
+	    			   </tr>`
+        }
+
+        tariftotal = tarifvtot + tarifptot
 
 
-
-    let codeHTML = `<section class='page'>
+        // Assemblage final de toutes le informations récoltées.
+        //  Un <span> créer une petite zone de texte sans retour à la ligne
+        //  &nbsp = espace insécable
+        let codeHTML = `<section class='page'>
                     <img id='Logo2' src='../img/CAN.png' alt='Logo'> 
                     <p class='factTitre'>Facture</p>
                     <p class='fact'>Illkirch le <span id='datedujour'></span></p>
@@ -317,257 +334,257 @@ const getUneReservation = async (nb) => {
                     </section>
                     </section>`
         
-        // <span> créé une petite zone de texte sans retour ligne
-        // &nbsp = espace insécable
         ContainerReservations.innerHTML = codeHTML
 
+        // Récupérer la date du jour
         const LaDate = new Date();
         document.getElementById('datedujour').textContent = LaDate.toLocaleDateString()
-        //Récupérer la date du jour
 
-    } catch (error){ // Gérer les erreurs
+    } catch (error) { // Gérer les erreurs
         console.error('Une erreur est survenue :', error)
         return
     }
 };
 
 const getUnPassager = async (port, nbr, nbp) => {
-        try {
-            const response = await fetch(
-                `https://can.iutrs.unistra.fr/api/reservation/${nbr}/passager/${nbp}`
-            );
+    try {
+        const response = await fetch(
+            `https://can.iutrs.unistra.fr/api/reservation/${nbr}/passager/${nbp}`
+        );
 
-            if (!response.ok) {
-                throw new Error("Erreur réseau !");
-            }
+        if (!response.ok) {
+            throw new Error("Erreur réseau !");
+        }
 
-            const data = await response.json(); 
+        const data = await response.json(); 
 
-            if(port === 'Lorient')
+        // Gestion des tarifs en fonction du trajet
+        if (port === 'Lorient')
+        {
+            if(data.libelleCategorie === "Bébé moins de 4 ans")
             {
-                if(data.libelleCategorie === "Bébé moins de 4 ans")
-                {
-                    nbbebe += 1
-                }
-                if(data.libelleCategorie === "Enfant 4 à 17 ans inclus")
-                {
-                    nbenfant += 1
-                    tarifenfant += 11.25
-                    tarifenfantseul = 11.25
-                }
-                if(data.libelleCategorie === "Jeune 18 à 25 ans inclus")
-                {
-                    nbjeune += 1
-                    tarifjeune += 13.80
-                    tarifjeuneseul = 13.80
-                }
-                if(data.libelleCategorie === "Adulte 26 ans et plus")
-                {
-                    nbadulte += 1
-                    tarifadulte += 18.75
-                    tarifadulteseul = 18.75
-                }
-                if(data.libelleCategorie === "Aninal de compagnie")
-                {
-                    nbanimal += 1
-                    tarifanimal += 3.35
-                    tarifanimalseul = 3.35
-                }
+                nbbebe += 1
             }
-            else
+            if(data.libelleCategorie === "Enfant 4 à 17 ans inclus")
             {
-                if(data.libelleCategorie === "Bébé moins de 4 ans")
-                {
-                    nbbebe += 1
-                }
-                if(data.libelleCategorie === "Enfant 4 à 17 ans inclus")
-                {
-                    nbenfant += 1
-                    tarifenfant += 11.65
-                    tarifenfantseul = 11.65
-                }
-                if(data.libelleCategorie === "Jeune 18 à 25 ans inclus")
-                {
-                    nbjeune += 1
-                    tarifjeune += 14.10
-                    tarifjeuneseul = 14.10
-                }
-                if(data.libelleCategorie === "Adulte 26 ans et plus")
-                {
-                    nbadulte += 1
-                    tarifadulte += 18.80
-                    tarifadulteseul = 18.80
-                }
-                if(data.libelleCategorie === "Aninal de compagnie")
-                {
-                    nbanimal += 1
-                    tarifanimal += 3.35
-                    tarifanimalseul = 3.35
-                }
+                nbenfant += 1
+                tarifenfant += 11.25
+                tarifenfantseul = 11.25
             }
+            if(data.libelleCategorie === "Jeune 18 à 25 ans inclus")
+            {
+                nbjeune += 1
+                tarifjeune += 13.80
+                tarifjeuneseul = 13.80
+            }
+            if(data.libelleCategorie === "Adulte 26 ans et plus")
+            {
+                nbadulte += 1
+                tarifadulte += 18.75
+                tarifadulteseul = 18.75
+            }
+            if(data.libelleCategorie === "Aninal de compagnie")
+            {
+                nbanimal += 1
+                tarifanimal += 3.35
+                tarifanimalseul = 3.35
+            }
+        }
+        else
+        {
+            if(data.libelleCategorie === "Bébé moins de 4 ans")
+            {
+                nbbebe += 1
+            }
+            if(data.libelleCategorie === "Enfant 4 à 17 ans inclus")
+            {
+                nbenfant += 1
+                tarifenfant += 11.65
+                tarifenfantseul = 11.65
+            }
+            if(data.libelleCategorie === "Jeune 18 à 25 ans inclus")
+            {
+                nbjeune += 1
+                tarifjeune += 14.10
+                tarifjeuneseul = 14.10
+            }
+            if(data.libelleCategorie === "Adulte 26 ans et plus")
+            {
+                nbadulte += 1
+                tarifadulte += 18.80
+                tarifadulteseul = 18.80
+            }
+            if(data.libelleCategorie === "Aninal de compagnie")
+            {
+                nbanimal += 1
+                tarifanimal += 3.35
+                tarifanimalseul = 3.35
+            }
+        }
 
-            tarifptot = (tarifenfant + tarifjeune + tarifadulte + tarifanimal) 
+        // Calcul du total pour les passagers
+        tarifptot = (tarifenfant + tarifjeune + tarifadulte + tarifanimal) 
 
-        } catch (error) {
-            console.error("Une erreur est survenue :", error);
+    } catch (error) {
+        console.error("Une erreur est survenue :", error);
     }
 };
 
 const getUnVehicule = async (port, nbr, nbv) => {
-        try {
-            const response = await fetch(
-                `https://can.iutrs.unistra.fr/api/reservation/${nbr}/vehicule/${nbv}`
-            );
+    try {
+        const response = await fetch(
+            `https://can.iutrs.unistra.fr/api/reservation/${nbr}/vehicule/${nbv}`
+        );
 
-            if (!response.ok) {
-                throw new Error("Erreur réseau !");
-            }
+        if (!response.ok) {
+            throw new Error("Erreur réseau !");
+        }
 
-            const data = await response.json(); 
-
-            if (port === "Lorient" || port === "Port-Tudy")
+        const data = await response.json(); 
+        
+        // Gestion des tarifs en fonction du trajet
+        if (port === "Lorient" || port === "Port-Tudy")
+        {
+            if(data.code === "trot")
             {
-                if(data.code === "trot")
-                {
-                    nbtrot += 1
-                    tariftrot += 4.70
-                    tariftrotseul = 4.70
-                }
-                if(data.code === "velo")
-                {
-                    nbvelo += 1
-                    tarifvelo += 8.20
-                    tarifveloseul = 8.20
-                }
-                if(data.code === "velelec")
-                {
-                    nbvelelec += 1
-                    tarifvelelec += 11.00
-                    tarifvelelecseul = 11.00
-                }
-                if(data.code === "cartand")
-                {
-                    nbcartand += 1
-                    tarifcartand += 16.45
-                    tarifcartandseul = 16.45
-                }
-                if(data.code === "mobil")
-                {
-                    nbmobil += 1
-                    tarifmobil += 23.10
-                    tarifmobilseul = 23.10
-                }
-                if(data.code === "moto")
-                {
-                    nbmoto += 1
-                    tarifmoto += 66.05
-                    tarifmotoseul = 66.05
-                }
-                if(data.code === "cat1")
-                {
-                    nbcat1 += 1
-                    tarifcat1 += 96.05
-                    tarifcat1seul = 96.05
-                }
-                if(data.code === "cat2")
-                {
-                    nbcat2 += 1
-                    tarifcat2 += 114.80
-                    tarifcat2seul = 114.80
-                }
-                if(data.code === "cat3")
-                {
-                    nbcat3 += 1
-                    tarifcat3 += 174.45
-                    tarifcat3seul = 174.45
-                }
-                if(data.code === "cat4")
-                {
-                    nbcat4 += 1
-                    tarifcat4 += 210.90
-                    tarifcat4seul = 210.90
-                }
-                if(data.code === "camp")
-                {
-                    nbcamp += 1
-                    tarifcamp += 330.20
-                    tarifcampseul = 330.20
-                }
+                nbtrot += 1
+                tariftrot += 4.70
+                tariftrotseul = 4.70
             }
-            else
+            if(data.code === "velo")
             {
-                if(data.code === "trot")
-                {
-                    nbtrot += 1
-                    tariftrot += 4.70
-                    tariftrotseul = 4.70
-                }
-                if(data.code === "velo")
-                {
-                    nbvelo += 1
-                    tarifvelo += 8.20
-                    tarifveloseul = 8.20
-                }
-                if(data.code === "velelec")
-                {
-                    nbvelelec += 1
-                    tarifvelelec += 11.00
-                    tarifvelelecseul = 11.00
-                }
-                if(data.code === "cartand")
-                {
-                    nbcartand += 1
-                    tarifcartand += 16.45
-                    tarifcartandseul = 16.45
-                }
-                if(data.code === "mobil")
-                {
-                    nbmobil += 1
-                    tarifmobil += 23.35
-                    tarifmobilseul = 23.35
-                }
-                if(data.code === "moto")
-                {
-                    nbmoto += 1
-                    tarifmoto += 66.40
-                    tarifmotoseul = 66.40
-                }
-                if(data.code === "cat1")
-                {
-                    nbcat1 += 1
-                    tarifcat1 += 98.50
-                    tarifcat1seul = 98.50
-                }
-                if(data.code === "cat2")
-                {
-                    nbcat2 += 1
-                    tarifcat2 += 117.20
-                    tarifcat2seul = 117.20
-                }
-                if(data.code === "cat3")
-                {
-                    nbcat3 += 1
-                    tarifcat3 += 176.90
-                    tarifcat3seul = 176.90
-                }
-                if(data.code === "cat4")
-                {
-                    nbcat4 += 1
-                    tarifcat4 += 213.35
-                    tarifcat4seul = 213.35
-                }
-                if(data.code === "camp")
-                {
-                    nbcamp += 1
-                    tarifcamp += 332.70
-                    tarifcampseul = 332.70
-                }
+                nbvelo += 1
+                tarifvelo += 8.20
+                tarifveloseul = 8.20
             }
+            if(data.code === "velelec")
+            {
+                nbvelelec += 1
+                tarifvelelec += 11.00
+                tarifvelelecseul = 11.00
+            }
+            if(data.code === "cartand")
+            {
+                nbcartand += 1
+                tarifcartand += 16.45
+                tarifcartandseul = 16.45
+            }
+            if(data.code === "mobil")
+            {
+                nbmobil += 1
+                tarifmobil += 23.10
+                tarifmobilseul = 23.10
+            }
+            if(data.code === "moto")
+            {
+                nbmoto += 1
+                tarifmoto += 66.05
+                tarifmotoseul = 66.05
+            }
+            if(data.code === "cat1")
+            {
+                nbcat1 += 1
+                tarifcat1 += 96.05
+                tarifcat1seul = 96.05
+            }
+            if(data.code === "cat2")
+            {
+                nbcat2 += 1
+                tarifcat2 += 114.80
+                tarifcat2seul = 114.80
+            }
+            if(data.code === "cat3")
+            {
+                nbcat3 += 1
+                tarifcat3 += 174.45
+                tarifcat3seul = 174.45
+            }
+            if(data.code === "cat4")
+            {
+                nbcat4 += 1
+                tarifcat4 += 210.90
+                tarifcat4seul = 210.90
+            }
+            if(data.code === "camp")
+            {
+                nbcamp += 1
+                tarifcamp += 330.20
+                tarifcampseul = 330.20
+            }
+        }
+        else
+        {
+            if(data.code === "trot")
+            {
+                nbtrot += 1
+                tariftrot += 4.70
+                tariftrotseul = 4.70
+            }
+            if(data.code === "velo")
+            {
+                nbvelo += 1
+                tarifvelo += 8.20
+                tarifveloseul = 8.20
+            }
+            if(data.code === "velelec")
+            {
+                nbvelelec += 1
+                tarifvelelec += 11.00
+                tarifvelelecseul = 11.00
+            }
+            if(data.code === "cartand")
+            {
+                nbcartand += 1
+                tarifcartand += 16.45
+                tarifcartandseul = 16.45
+            }
+            if(data.code === "mobil")
+            {
+                nbmobil += 1
+                tarifmobil += 23.35
+                tarifmobilseul = 23.35
+            }
+            if(data.code === "moto")
+            {
+                nbmoto += 1
+                tarifmoto += 66.40
+                tarifmotoseul = 66.40
+            }
+            if(data.code === "cat1")
+            {
+                nbcat1 += 1
+                tarifcat1 += 98.50
+                tarifcat1seul = 98.50
+            }
+            if(data.code === "cat2")
+            {
+                nbcat2 += 1
+                tarifcat2 += 117.20
+                tarifcat2seul = 117.20
+            }
+            if(data.code === "cat3")
+            {
+                nbcat3 += 1
+                tarifcat3 += 176.90
+                tarifcat3seul = 176.90
+            }
+            if(data.code === "cat4")
+            {
+                nbcat4 += 1
+                tarifcat4 += 213.35
+                tarifcat4seul = 213.35
+            }
+            if(data.code === "camp")
+            {
+                nbcamp += 1
+                tarifcamp += 332.70
+                tarifcampseul = 332.70
+            }
+        }
 
-            
-
-            tarifvtot = (tariftrot + tarifvelo + tarifvelelec + tarifcartand + tarifmobil +
-                        tarifmoto + tarifcat1 + tarifcat2 + tarifcat3 + tarifcat4 + tarifcamp)
+        // Calcul du total pour les véhicules
+        tarifvtot = (tariftrot + tarifvelo + tarifvelelec + tarifcartand + tarifmobil +
+                    tarifmoto + tarifcat1 + tarifcat2 + tarifcat3 + tarifcat4 + tarifcamp)
 
         } catch (error) {
             console.error("Une erreur est survenue :", error);
@@ -580,7 +597,7 @@ valider.addEventListener("click", function() {
     getUneReservation(valeur)
 });
 
+//Pour arrondir à deux décimal
 function arrondir(n) {
     return Math.round(n * 100) / 100;
 }
-//Pour arrondir à deux décimal
