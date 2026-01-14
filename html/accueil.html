@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>la CAN</title>
+    <link rel="stylesheet" href="../css/style1.css">
+
+</head>
+<body>
+    <header>
+        <img id="Logo" src="../img/CAN3.png" alt="Logo">
+        <nav>
+            <ul>
+                <li><a href="cartes_embarquement.html">Afficher les cartes d'embarquement</a></li>
+                <li><a href="facture.html">Afficher la facture d'une réservation</a></li>
+                <li><a class="special" href="tableau_bord.html">Afficher un tableau de bord</a></li>
+                <li><a class="petit" href="statistiques.html">Afficher des statistiques</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+    <section>
+        <article class="principal">
+            <h1 class="gros-texte">Nous sommes la CAN</h1>
+            <p class="message">Prêts à prendre la mer ?</p>
+            <a href="../download/CAN-software-dev.zip" download class="installer">Installer l'application</a>
+            
+            
+        </article>
+    </section>
+	
+    <article class="infos">
+			<p class="infos">Prenez le large à travers les plus belle îles de Bretagne</p>
+            <p class="texte">Groix et Quiberon, la beauté à l'état naturel. Prenez place dans nos bateaux dirigés par les capitaines les plus performants du globe
+                pour vous offrir un moment hors du temps, en rejoignant des îles qui font la fiérté du patrimoine breton. 
+            </p>
+            <section>
+                <video class="video1" muted autoplay loop>
+                        <source src="../video/video_groix.mp4" type="video/mp4" />
+                        <p>
+                        Désolé, votre navigateur ne prend pas en charge les vidéos HTML5.
+                        </p>
+                </video>
+            </section>
+	</article>
+    <footer>
+        <p class="foot">Nous contacter</p>
+        <address>
+            <p>Telephone: 07 67 67 67 67</p>
+            <p>E-mail : lacan67@gmail.com</p>
+            <p>Adresse : 8 rue de la crêpe, Strasbourg, 67000</p>
+            <p>Instagram: @lacaninsta</p>
+            <p>Facebook: @lacanfacebk</p>
+		</address>
+        <p class="foot2">Herlin Yanis, Metz Baptiste, Flatter Emile TP5</p>
+        <p class ="foot2">IUT Robert Schuman, Illkirch-Grafenstaden, 2026, Tous droits Réservés</p></p>
+    </footer>
+    <script>
+    const nav = document.querySelector("nav");
+    const logo = document.getElementById("Logo");
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+        nav.classList.add("retrecit");
+        logo.classList.add("retrecit");
+        } else {
+        nav.classList.remove("retrecit");
+        logo.classList.remove("retrecit");
+        }
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,755 @@
+/*Commun à toutes les pages*/
+html {
+	font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #aec3d8; 
+    background-image: url(../img/fondsite2.png);
+    background-repeat: no-repeat;
+    background-size: 153%;
+}
+
+header{
+	display: flex; 
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+p {
+    color: white;
+}
+
+img#Logo {
+    width: 13.5%;
+    border-radius: 50px;
+    background-color: rgba(0, 0, 0, 0.4);
+    position:fixed ;
+    z-index: 10000;
+}
+
+section {
+    display: flex;
+}
+
+nav {
+	background-color:rgba(0, 0, 0, 0.4);
+	width: 83%;
+	border-radius: 50px;
+    margin-left: 16%;
+    margin-right: 2%;
+    position: fixed;
+    z-index: 10000; /*En étant pas en position: static (position de base), le nav peut être superposée par d'autre éléments. En mettant z-index à 10000 on s'assure qu'il soit toujours cliquable*/
+}
+
+ul {
+    display: flex;
+    padding: 1.25%;
+    gap: 5%; /* tous les enfants du containeur ul auront 5% d’espace entre eux */
+}
+
+
+li {
+    display: flex;
+    flex-grow: 1; /*le contenu peut grandir proportionnellement à l’espace disponible*/
+    flex-basis: 0; /*la taille de base, avant le partage de l’espace, est égale à zéro*/
+    list-style: none;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 2%;
+    padding: 0;              
+}
+
+a {  
+    display: flex;
+    justify-content: center; 
+    align-items: center;   
+    padding: 5%;        
+    width: 90%;                 
+    height: 90%;                
+    background: linear-gradient(to bottom, white, rgb(44, 158, 192));
+    border-radius: 20px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb(68, 31, 138);
+    transition: 
+        transform 0.2s ease, /*Permet de faire une animation de transition quand transform change*/
+        padding 0.5s ease; /*Permet de faire une animation de transition quand le padding change*/
+}
+
+a:hover {
+    transform: scale(1.1); /*transform change (grossissement)*/
+}
+
+a.petit {
+    padding-top: 5%;
+}
+
+/*Page principale*/
+article.principal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	background-color:rgba(0, 0, 0, 0.4);
+    width: 100%;
+	border-radius: 20px;
+	margin-bottom: 2%;
+	margin-top:11%;
+    padding-bottom: 12%;
+    box-shadow: 0 0 20px 8px rgba(0,0,0,0.5); /*Le troisième paramètre (20px ici) définit la puissance du flou. */
+    /*Le quatrième paramètre (8px ici) gère l’étalement du flou autour de l’élément. Premier 0 = décalage horizontal, Deuxième 0 = décalage vertical. 0.5 dans rgba = canal alpha = niveau d'opacité*/
+}
+
+article.infos
+{
+    display: flex;
+    flex-direction: column;
+	background-color:rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+	width: 100%;
+	height: 21%;
+	margin: 0px;
+    padding: 0px;
+    box-shadow: 0 0 20px 8px rgba(0,0,0,0.5);
+}
+
+p.infos {
+    margin-left: 3%;
+    margin-top: 5%;
+    margin-bottom: 0;
+    font-size: 2em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    font-weight: bold;
+}
+
+p.texte {
+    margin-left: 3%;
+    margin-top: 2%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+}
+
+p.message {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(128, 200, 222);
+    margin-top: 0;
+    font-size: 2em;
+    background: linear-gradient(to bottom, white, rgb(44, 158, 192));
+    background-clip: text;
+}
+
+h1.gros-texte {
+    color: white;
+    font-size: 4em;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 0;
+    margin-bottom: 0.01;
+    padding-top: 3%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a.installer {
+    width: 15%;
+    height: 10%;
+    padding-top:1%;
+    padding-bottom: 1%;
+    padding-left: 0;
+    padding-right: 0;
+    border-style: groove;
+    color: white;
+    border-color: white;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+	background-color:rgb(18, 5, 41);
+	width: 100%;
+	margin-top: 0.5%;
+    padding-top: 1%;
+    box-shadow: 0 0 20px 8px rgba(0,0,0,0.5);
+}
+
+p.foot {
+    font-size: 2rem;
+    padding-left: 5%;
+}
+
+address {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 2%;
+    
+}
+
+address > p {
+    padding-left: 5%;
+}
+
+p.foot2 {
+    padding-left: 5%;
+    margin-top: 0%;
+}
+
+video.video1 {
+    width: 80%;
+    border-radius: 50px;
+    border-style: groove;
+    text-align: center;
+    margin-left: 10%;
+    margin-bottom: 2%;
+}
+
+/*Page facture*/
+
+article.facture {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	background-color:rgba(0, 0, 0, 0.4);
+    width: 100%;
+	border-radius: 20px;
+	margin-bottom: 0%;
+	margin-top:11%;
+    padding-bottom: 14%;
+    box-shadow: 0 0 20px 8px rgba(0,0,0,0.5); /*Le troisième paramètre (20px ici) définit la puissance du flou. */
+    /*Le quatrième paramètre (8px ici) gère l’étalement du flou autour de l’élément. Premier 0 = décalage horizontal, Deuxième 0 = décalage vertical. 0.5 dans rgba = canal alpha = niveau d'opacité*/
+}
+
+h1.titrepage {
+    color: white;
+    margin-bottom: 0;
+}
+
+input.num {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  font-size: 16px;
+  margin-top :0.5%;
+  margin-bottom: 2%;
+  width: 30%;
+}
+
+input.num:focus {
+  border-color: #aec3d8;
+}
+
+input.valid {
+    border-radius: 50px;
+    height: 50%;
+    padding: 15px 40px;
+    background-color: rgb(44, 158, 192);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-bottom: 4%;
+}
+
+
+input.valid:hover {
+    background-color: #5a61af;
+}
+
+section.page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    border-radius: 50px;
+    padding: 3%;
+    width: 50%;
+    margin-left: 23%;
+}
+
+img#Logo2 {
+    width: 40%;
+    align-self: center;
+}
+
+p.factTitre {
+    color: black;
+    align-self: center;
+    font-weight: bold;
+}
+
+p.fact {
+    color: black;
+    margin-bottom: 0;
+}
+
+p.factgras {
+    color: black;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+table {
+    border-collapse: collapse; /*Les bordures peuvent se toucher */
+}
+
+th {
+    border: solid;
+    color: black;
+}
+
+td {
+    border: solid;
+    text-align: center;
+    color: black;
+}
+
+section.soustot {
+    justify-content: flex-end;
+}
+
+body.bodyfact {
+    background-color: #aec3d8;
+    background-image: url("../img/CANsymbolegauche.png"), url("../img/CANsymboledroite.png");
+    background-repeat: no-repeat, no-repeat;
+    background-position: left center, right center;
+    background-size: 120px, 120px;
+    
+}
+
+img#symbg {
+    width: 50%;
+    height: 10%;
+}
+
+/*Cartes d'embarquement*/
+
+body.bodycart {
+    background-image: url("../img/fondcarte.png");
+    background-repeat: repeat;
+    background-size: 170%;
+    
+}
+
+section.carte {
+    margin-left: 19%;
+    margin-right: 19%;
+    border-radius: 50px;
+    border-style: solid;
+    padding: 1%;
+    background-color: #5a61af;
+}
+
+p.car {
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+}
+
+img#carte {
+    max-width: 80%; 
+    border-radius: 50px;
+    border-style: solid;
+    background-color: white;
+    padding: 0;
+}
+
+section.datas1 {
+    flex-direction: column;
+    padding: 0%;
+    width: 50%;
+}
+
+section.datas2 {
+    flex-direction: column;
+    padding: 0%;
+    width: 50%;
+}
+
+section.blanc {
+    min-height: 460px;
+    flex-direction: column;
+    background-color: white;
+    padding: 4%;
+    border-radius: 50px;
+}
+
+p.cartg {
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 0;
+}
+
+p.cart {
+    font-size: 1.5rem;
+    padding: 0;
+}
+
+p.cart2 {
+    color: black;
+    margin-bottom: 0;
+    font-size: 1.5rem;
+}
+
+p.cart2g {
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+section.ligne {
+    justify-content: space-between;
+}
+
+img#qrcode {
+    width: 30%;
+}
+
+section#ContainerReservations {
+    position: relative; /*Devient un repère pour les enfants du container en position: absolute*/
+}
+
+
+button.fleche {
+  position: absolute; /*Les flèches sont par rapport au parent en position: relative, ici ContainerReservations*/
+  top: 50%;
+  z-index: 1000; /*En étant pas en position: static (position de base), la fleche peut être superposée par d'autre éléments. En mettant z-index à 1000 on s'assure qu'elle soit quand même cliquable (seul le nav à un plus gros z-index)*/
+  background: none;
+  border: none;
+  font-size: 5rem;
+  cursor: pointer;
+  color: white;
+}
+
+button.fleche:disabled {
+    opacity: 0.5;
+}
+
+/*Placement par rapport au repère*/
+button#avant {
+  left: 5%;
+}
+
+button#apres {
+  right: 5%;
+}
+
+/*Pages stats et tableau*/
+
+body.bodytab {
+    background-color: #141c73;
+    background-image: url("../img/CANsymbolegauche.png"), url("../img/CANsymboledroite.png");
+    background-repeat: no-repeat, no-repeat;
+    background-position: left center, right center;
+    background-size: 120px, 120px;
+}
+
+section.infos {
+    flex-direction: column;
+}
+
+p.rouge {
+    color: red;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+p.vert {
+    color: rgb(2, 182, 2);
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+p.jaune {
+    color: yellow;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+p.orange {
+    color: orange;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+p.rougeV {
+    color: red;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+p.vertV {
+    color: rgb(2, 182, 2);
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+p.jauneV {
+    color: yellow;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+p.orangeV {
+    color: orange;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+p.ptab {
+    font-size: 1.25rem;
+}
+
+input#entrer {
+    margin-top: 0.5%;
+} 
+
+article.artdate {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+input.num2 {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  font-size: 16px;
+  margin-top :0.5%;
+  margin-bottom: 7%;
+  width: 65%;
+}
+
+body.bodystat {
+    background-image: url("../img/fondtab.jpg");
+    background-repeat: no-repeat;
+    background-size: 155%;
+    
+}
+
+input.valid2 {
+    border-radius: 50px;
+    height: 50%;
+    padding: 15px 40px;
+    background-color: rgb(44, 158, 192);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 10%;
+}
+
+article.artstats {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	background-color:rgba(0, 0, 0, 0.4);
+    width: 100%;
+	border-radius: 20px;
+	margin-bottom: 0%;
+	margin-top:11%;
+    padding-bottom: 19%;
+    box-shadow: 0 0 20px 8px rgba(0,0,0,0.5); /*Le troisième paramètre (20px ici) définit la puissance du flou. */
+    /*Le quatrième paramètre (8px ici) gère l’étalement du flou autour de l’élément. Premier 0 = décalage horizontal, Deuxième 0 = décalage vertical. 0.5 dans rgba = canal alpha = niveau d'opacité*/
+}
+
+table.stats {
+    margin-top: 2%;
+    width: 80%;
+    color: white;
+}
+
+th.thstats {
+    border: solid;
+    color: white;
+}
+
+td.tdstats {
+    border: solid;
+    text-align: center;
+    color: white;
+}
+
+/*Animation quand on scroll*/
+
+nav {
+    transition: padding 0.5s ease /*Animation de transition quand le padding change, ease = animation de plus en plus rapide*/
+}
+
+img#Logo {
+  transition: width 0.5s ease /*Animation de transition quand la largeur change, ease = animation de plus en plus rapide*/
+}
+
+nav.retrecit {
+    padding-top: 0.1%;
+    padding-bottom: 0.1%;
+}
+
+nav.retrecit a {
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+nav.retrecit a.petit {
+    padding-top: 2%;
+}
+
+img#Logo.retrecit {
+    width: 11.3%;
+}
+
+
+@media (min-width: 1920px) {
+    nav {
+        padding-bottom: 1.2%;
+    }
+    html {
+        background-size: 139%;
+    }
+    ul {
+        padding-bottom: 0%;
+    }
+    img#Logo {
+        width: 11.7%;
+    }
+    a.special {
+        padding-top: 10%;
+
+    }
+}
+
+/*Page cartes d'embarquements responsive pour smartphone*/
+@media (max-width: 768px) {
+
+  html {
+    font-size: 14px;
+    background-size: cover;
+  }
+
+  section {
+    flex-direction: column;
+  }
+
+  ul {
+    flex-direction: column;
+    gap: 10px;
+    padding: 5%;
+  }
+
+  nav {
+    flex-direction: column;
+    width: 50%;
+    position: static;
+    margin-left: 1%;
+    padding: 0%;
+    
+  }
+
+  li {
+    margin-left: 10%;
+    height: 10%;
+  }
+
+  img#Logo {
+    position: static;
+    height: 160px;
+    width: 50%;
+    margin-left: 2%;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+
+  input.num {
+    width: 70%;
+  }
+
+  article.facture {
+    margin-top: 2%;
+  }
+
+  section.carte {
+    flex-direction: column;
+    margin: 5%;
+    padding: 5%;
+    border-radius: 25px;
+  }
+  
+  section.blanc {
+    border-radius: 25px;
+  }
+
+  section.datas1 {
+    width: 100%;
+    text-align: center;
+    padding: -25px;
+  }
+
+  section.datas2 {
+    width: 100%;
+    text-align: center;
+  }
+
+  img#carte {
+    margin-left: 10%;
+  }
+
+  img#qrcode {
+    width: 80%;
+    margin-left: 10%;
+  }
+
+   button.fleche {
+    top: auto;
+    /*On s'en fout de l'ancienne valeur de top, palce de l'elt contrôlé par bottom*/
+    bottom: -60px;
+    
+  }
+
+  button#avant {
+    left: 20%;
+  }
+
+  button#apres {
+    right: 20%;
+  }
+  
+  address {
+    flex-direction: column;
+  }
+
+  p.foot {
+    text-align: center;
+  }
+
+  nav.retrecit {
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
+
+  img#Logo.retrecit {
+    width: 50%;
+  }
+  
+}
+
+
