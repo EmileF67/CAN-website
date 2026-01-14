@@ -101,3 +101,7 @@ function arrondir(n) {
     return Math.round(n * 100) / 100;
 }
 //Pour arrondir à deux décimal
+
+document.getElementById('Logo').addEventListener('click', () => {
+    window.location.href = 'accueil.html';
+});

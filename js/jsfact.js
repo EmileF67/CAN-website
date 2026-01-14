@@ -651,3 +651,7 @@ valider.addEventListener("click", function() {
     const valeur = document.getElementById("nom").value;
     getUneReservation(valeur)
 });
+
+document.getElementById('Logo').addEventListener('click', () => {
+    window.location.href = 'accueil.html';
+});
