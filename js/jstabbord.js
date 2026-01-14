@@ -116,3 +116,7 @@ function ClickE(sect, champ) {
 
     getDonnees();
 }
+
+document.getElementById('Logo').addEventListener('click', () => {
+    window.location.href = 'accueil.html';
+});

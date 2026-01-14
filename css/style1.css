@@ -28,6 +28,7 @@ img#Logo {
     background-color: rgba(0, 0, 0, 0.4);
     position:fixed ;
     z-index: 10000;
+    cursor: pointer;
 }
 
 section {
@@ -79,6 +80,13 @@ a {
     transition: 
         transform 0.2s ease, /*Permet de faire une animation de transition quand transform change*/
         padding 0.5s ease; /*Permet de faire une animation de transition quand le padding change*/
+}
+
+a.rien {
+    all: unset;  /*enlève les styles*/
+    color: rgb(137, 202, 239);
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 a:hover {
