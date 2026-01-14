@@ -171,102 +171,150 @@ const getUneReservation = async (nb) => {
         //  - Nombre
         //  - Prix unitaire
         //  - Prix en ligne
-        if(nbadulte > 0) 
-        {
+        if(nbadulte > 0) {
             ligneP += `<tr>
-	    				<td>Adulte 26 ans et plus</td> 	<td>${nbadulte}</td> <td>${tarifadulteseul.toString().replace('.', ',')}</td> <td>${tarifadulte.toString().replace('.', ',')}</td>
-	    			   </tr>`
+                <td>Adulte 26 ans et plus</td>
+                <td>${nbadulte}</td>
+                <td>${tarifadulteseul.toString().replace('.', ',')}</td>
+                <td>${arrondir(tarifadulte).toString().replace('.', ',')}</td>
+            </tr>`;
         }
-        if(nbjeune > 0) 
-        {
+
+        if(nbjeune > 0) {
             ligneP += `<tr>
-	    			  	<td>Jeune 18 à 25 ans inclus</td> 	<td>${nbjeune}</td> <td>${tarifjeuneseul.toString().replace('.', ',')}</td> <td>${tarifjeune.toString().replace('.', ',')}</td>
-	    			   </tr>`
+                <td>Jeune 18 à 25 ans inclus</td>
+                <td>${nbjeune}</td>
+                <td>${tarifjeuneseul.toString().replace('.', ',')}</td>
+                <td>${arrondir(tarifjeune).toString().replace('.', ',')}</td>
+            </tr>`;
         }
-        if(nbenfant > 0) 
-        {
+
+        if(nbenfant > 0) {
             ligneP += `<tr>
-	    			  	<td>Enfant 4 à 17 inclus</td> 	<td>${nbenfant}</td> <td>${tarifenfantseul.toString().replace('.', ',')}</td> <td>${tarifenfant.toString().replace('.', ',')}</td>
-	    			   </tr>`
+                <td>Enfant 4 à 17 inclus</td>
+                <td>${nbenfant}</td>
+                <td>${tarifenfantseul.toString().replace('.', ',')}</td>
+                <td>${arrondir(tarifenfant).toString().replace('.', ',')}</td>
+            </tr>`;
         }
-        if(nbbebe > 0) 
-        {
+
+        if(nbbebe > 0) {
             ligneP += `<tr>
-	    			  	<td>Bébé moins de 4 ans</td> 	<td>${nbbebe}</td> <td>gratuit</td> <td>0</td>
-	    			   </tr>`
+                <td>Bébé moins de 4 ans</td>
+                <td>${nbbebe}</td>
+                <td>gratuit</td>
+                <td>0</td>
+            </tr>`;
         }
-        if(nbanimal > 0) 
-        {
+
+        if(nbanimal > 0) {
             ligneP += `<tr>
-	    			  	<td>Animal de compagnie</td> 	<td>${nbanimal}</td> <td>3,35</td> <td>${tarifanimal.toString().replace('.', ',')}</td>
-	    			   </tr>`
+                <td>Animal de compagnie</td>
+                <td>${nbanimal}</td>
+                <td>3,35</td>
+                <td>${arrondir(tarifanimal).toString().replace('.', ',')}</td>
+            </tr>`;
         }
-        if(nbtrot > 0) 
-        {
+
+        if(nbtrot > 0) {
             ligneV += `<tr>
-	    			  	<td>Trottinette électrique</td> 	<td>${nbtrot}</td> <td>${tariftrotseul.toString().replace('.', ',')}</td> <td>${tariftrot.toString().replace('.', ',')}</td>
-	    			   </tr>`
+                <td>Trottinette électrique</td>
+                <td>${nbtrot}</td>
+                <td>${tariftrotseul.toString().replace('.', ',')}</td>
+                <td>${arrondir(tariftrot).toString().replace('.', ',')}</td>
+            </tr>`;
         }
-        if(nbvelo > 0) 
-        {
+
+        if(nbvelo > 0) {
             ligneV += `<tr>
-	    			  	<td>Vélo ou remorque à vélo</td> 	<td>${nbvelo}</td> <td>${tarifveloseul.toString().replace('.', ',')}</td> <td>${tarifvelo.toString().replace('.', ',')}</td>
-	    			   </tr>`
+                <td>Vélo ou remorque à vélo</td>
+                <td>${nbvelo}</td>
+                <td>${tarifveloseul.toString().replace('.', ',')}</td>
+                <td>${arrondir(tarifvelo).toString().replace('.', ',')}</td>
+            </tr>`;
         }
-        if(nbvelelec > 0) 
-        {
+
+        if(nbvelelec > 0) {
             ligneV += `<tr>
-	    			  	<td>Vélo électrique </td> 	<td>${nbvelelec}</td> <td>${tarifvelelecseul.toString().replace('.', ',')}</td> <td>${tarifvelelec.toString().replace('.', ',')}</td>
-	    			   </tr>`
+                <td>Vélo électrique</td>
+                <td>${nbvelelec}</td>
+                <td>${tarifvelelecseul.toString().replace('.', ',')}</td>
+                <td>${arrondir(tarifvelelec).toString().replace('.', ',')}</td>
+            </tr>`;
         }
-        if(nbcartand > 0) 
-        {
+
+        if(nbcartand > 0) {
             ligneV += `<tr>
-	    			  	<td>Vélo cargo ou tandem </td> 	<td>${nbcartand}</td> <td>${tarifcartandseul.toString().replace('.', ',')}</td> <td>${tarifcartand.toString().replace('.', ',')}</td>
-	    			   </tr>`
+                <td>Vélo cargo ou tandem</td>
+                <td>${nbcartand}</td>
+                <td>${tarifcartandseul.toString().replace('.', ',')}</td>
+                <td>${arrondir(tarifcartand).toString().replace('.', ',')}</td>
+            </tr>`;
         }
-        if(nbmobil > 0) 
-        {
+
+        if(nbmobil > 0) {
             ligneV += `<tr>
-	    			  	<td>Deux-roues <= 125 cm3</td> 	<td>${nbmobil}</td> <td>${tarifmobilseul.toString().replace('.', ',')}</td> <td>${tarifmobil.toString().replace('.', ',')}</td>
-	    			   </tr>`
+                <td>Deux-roues <= 125 cm3</td>
+                <td>${nbmobil}</td>
+                <td>${tarifmobilseul.toString().replace('.', ',')}</td>
+                <td>${arrondir(tarifmobil).toString().replace('.', ',')}</td>
+            </tr>`;
         }
-        if(nbmoto > 0) 
-        {
+
+        if(nbmoto > 0) {
             ligneV += `<tr>
-	    			  	<td>Deux-roues > 125 cm3</td> 	<td>${nbmoto}</td> <td>${tarifmotoseul.toString().replace('.', ',')}</td> <td>${tarifmoto.toString().replace('.', ',')}</td>
-	    			   </tr>`
+                <td>Deux-roues > 125 cm3</td>
+                <td>${nbmoto}</td>
+                <td>${tarifmotoseul.toString().replace('.', ',')}</td>
+                <td>${arrondir(tarifmoto).toString().replace('.', ',')}</td>
+            </tr>`;
         }
-        if(nbcat1> 0) 
-        {
+
+        if(nbcat1 > 0) {
             ligneV += `<tr>
-	    			  	<td>Voiture moins de 4 m</td> 	<td>${nbcat1}</td> <td>${tarifcat1seul.toString().replace('.', ',')}</td> <td>${tarifcat1.toString().replace('.', ',')}</td>
-	    			   </tr>`
+                <td>Voiture moins de 4 m</td>
+                <td>${nbcat1}</td>
+                <td>${tarifcat1seul.toString().replace('.', ',')}</td>
+                <td>${arrondir(tarifcat1).toString().replace('.', ',')}</td>
+            </tr>`;
         }
-        if(nbcat2 > 0) 
-        {
+
+        if(nbcat2 > 0) {
             ligneV += `<tr>
-	    			  	<td>Voiture de 4 m à 4,39 m</td> 	<td>${nbcat2}</td> <td>${tarifcat2seul.toString().replace('.', ',')}</td> <td>${tarifcat2.toString().replace('.', ',')}</td>
-	    			   </tr>`
+                <td>Voiture de 4 m à 4,39 m</td>
+                <td>${nbcat2}</td>
+                <td>${tarifcat2seul.toString().replace('.', ',')}</td>
+                <td>${arrondir(tarifcat2).toString().replace('.', ',')}</td>
+            </tr>`;
         }
-        if(nbcat3 > 0) 
-        {
+
+        if(nbcat3 > 0) {
             ligneV += `<tr>
-	    			  	<td>Voiture de 4,40 m à 4,79 m</td> 	<td>${nbcat3}</td> <td>${tarifcat3seul.toString().replace('.', ',')}</td> <td>${tarifcat3.toString().replace('.', ',')}</td>
-	    			   </tr>`
+                <td>Voiture de 4,40 m à 4,79 m</td>
+                <td>${nbcat3}</td>
+                <td>${tarifcat3seul.toString().replace('.', ',')}</td>
+                <td>${arrondir(tarifcat3).toString().replace('.', ',')}</td>
+            </tr>`;
         }
-        if(nbcat4 > 0) 
-        {
+
+        if(nbcat4 > 0) {
             ligneV += `<tr>
-	    			  	<td>Voiture 4,80 m et plus</td> 	<td>${nbcat4}</td> <td>${tarifcat4seul.toString().replace('.', ',')}</td> <td>${tarifcat4.toString().replace('.', ',')}</td>
-	    			   </tr>`
+                <td>Voiture 4,80 m et plus</td>
+                <td>${nbcat4}</td>
+                <td>${tarifcat4seul.toString().replace('.', ',')}</td>
+                <td>${arrondir(tarifcat4).toString().replace('.', ',')}</td>
+            </tr>`;
         }
-        if(nbcamp > 0) 
-        {
+
+        if(nbcamp > 0) {
             ligneV += `<tr>
-	    			  	<td>Camping-car - véhicule plus de 2,10 de haut</td> 	<td>${nbcamp}</td> <td>${tarifcampseul.toString().replace('.', ',')}</td> <td>${tarifcamp.toString().replace('.', ',')}</td>
-	    			   </tr>`
+                <td>Camping-car - véhicule plus de 2,10 de haut</td>
+                <td>${nbcamp}</td>
+                <td>${tarifcampseul.toString().replace('.', ',')}</td>
+                <td>${arrondir(tarifcamp).toString().replace('.', ',')}</td>
+            </tr>`;
         }
+
 
         tariftotal = tarifvtot + tarifptot
 
