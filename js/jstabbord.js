@@ -57,7 +57,7 @@ function ClickE(sect, champ) {
     const getDonnees = async () => {
         try {
             const response = await fetch(
-                `https://can.iutrs.unistra.fr/api/liaison/${champ}/remplissage/${datel}`
+                `/api/liaison/${champ}/remplissage/${datel}`
             );
 
             console.log("status =", response.status);

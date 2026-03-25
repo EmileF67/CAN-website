@@ -33,7 +33,7 @@ const getUneReservation = async (nb) => {
         document.getElementById('ContainerReservations').textContent = ""
         
         // Obtenir les détails de la réservation n°<nb>
-        const response = await fetch(`https://can.iutrs.unistra.fr/api/reservation/${nb}`)
+        const response = await fetch(`/api/reservation/${nb}`)
 
         // Vérifier si la réponse est correcte, sinon alerter l'utilisateur.
         if (!response.ok) {
@@ -133,7 +133,7 @@ const getUneReservation = async (nb) => {
 const getUnPassager = async (nbr, nbp) => {
         try {
             const response = await fetch(
-                `https://can.iutrs.unistra.fr/api/reservation/${nbr}/passager/${nbp}`
+                `/api/reservation/${nbr}/passager/${nbp}`
             );
 
             if (!response.ok) {
@@ -154,7 +154,7 @@ const getUnPassager = async (nbr, nbp) => {
 const getUnVehicule = async (nbr, nbp) => {
         try {
             const response = await fetch(
-                `https://can.iutrs.unistra.fr/api/reservation/${nbr}/vehicule/${nbp}`
+                `/api/reservation/${nbr}/vehicule/${nbp}`
             );
 
             if (!response.ok) {

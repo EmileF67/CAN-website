@@ -56,7 +56,7 @@ async function Afficher() {
         try {
             // Récupération d'information classique
             const response = await fetch(
-                `https://can.iutrs.unistra.fr/api/liaison/${i}/chiffreAffaire`
+                `/api/liaison/${i}/chiffreAffaire`
             );
 
             if (!response.ok) {
